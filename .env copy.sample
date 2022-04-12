@@ -1,6 +1,0 @@
-environment=local
-#host=localhost
-host=192.168.0.102
-user=kensyuu
-password=!pass123
-database=todoapp
