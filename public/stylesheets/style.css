@@ -1,0 +1,48 @@
+body {
+  background-color: antiquewhite;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+.todo{
+  font-size: 50px;
+  font-style: inherit;
+  padding: auto;
+  margin-bottom: 10px;
+
+}
+
+.container{
+  margin-bottom: 10px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-bottom: 10px;
+  border-bottom-style: solid;
+  display: flex;
+}
+
+
+.taskList{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  width: 70%;
+}
+
+table{
+  border-spacing: 0px 5px;
+}
+
+.taskHead{
+  text-align: center;
+}
+table th,td  {
+  border:1px solid #dedede;
+  /* padding: 10px;      余白指定 */
+}
+
+table th
+.deletemodal-footer {
+  margin: auto;
+  padding-bottom: 10px;
+}
