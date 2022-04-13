@@ -27,6 +27,7 @@ body {
   padding: 0.5em 1em;
   margin: 2em 0;
   width: 70%;
+
 }
 
 table{
@@ -39,6 +40,8 @@ table{
 table th,td  {
   border:1px solid #dedede;
   /* padding: 10px;      余白指定 */
+  text-align: center;
+
 }
 
 table th
