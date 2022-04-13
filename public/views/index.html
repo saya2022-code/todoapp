@@ -22,16 +22,18 @@
 
   <body>
     <header class="todo">TO DO リスト</header>
+
     <div class="container">
       <!-- Content here -->
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">＋タスクを追加</button>
+      <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
+        ＋タスクを追加</button>
       <!-- 追加Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">タスク　登録</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="createModalLabel">タスク　登録</h5>
+                <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -50,7 +52,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                <button type="button" class="btn btn-primary">登録</button>
+                <button type="button" id="register-Task" class="btn btn-primary">登録</button>
               </div>
             </div>
           </div>
@@ -90,7 +92,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                <button type="button" class="btn btn-primary">登録</button>
+                <button type="button" id="alter-Task" class="btn btn-primary">登録</button>
               </div>
             </div>
           </div>
@@ -110,7 +112,7 @@
               </div>
               <div class="deletemodal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
-                <button type="button" class="btn btn-primary btn-sm">OK</button>
+                <button type="button" id="delete-task" class="btn btn-primary btn-sm">OK</button>
               </div>
             </div>
           </div>
@@ -152,6 +154,28 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../javascripts/index.js"></script>
+    <script>
+      //新規登録
+      $("#register-Task").on("click", async function() {
+      //リクエストデータをフォームから取得 -->
+        const requestData = {
+          taskName : $("#createModal input[name=taskName]").val(),
+          deadline : $("#createModal input[name=deadline]").val(),
+          category : $("#createModal select[name=category]").val(),
+        };
+      
+      //新規登録APIを実行
+      const respons = await httpPost(
+        "//" + window.location.host + "/api/tasks",
+        requestData
+      );
+
+      //画面をリロード
+      window.location.reload();
+      });
+    </script>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

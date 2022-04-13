@@ -23,7 +23,7 @@ const tasks = require("../../src/tasks/create.js");
 router.post("/tasks", function(req, res, next){
   console.log(req,body);
   const createTask = create.postCreateTasks(req,body);
-  res.send(createTask);
+  res.send(JSON.stringify(createTask));
   });
 
 module.exports = router;
