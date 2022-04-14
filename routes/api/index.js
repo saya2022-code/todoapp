@@ -1,23 +1,9 @@
-// var express = require("express");
-// const items = require("../../src/items");
-
-// var router = express.Router();
-
-// /* 商品一覧を取得するルーティング */
-// router.get("/items", function (req, res, next) {
-//   const itemsList = items.getListItem();
-//   res.send(itemsList);
-// });
-
-// /*１件の商品情報を取得するルーティング */
-// router.get("/items/:id", function (req, res, next) {
-//   const item = items.getItem(req.params.id);
-//   res.send(item);
-// });
+//expressの導入
 var express = require("express");
 var router = express.Router();
 
 const tasks = require("../../src/tasks/create.js");
+const list = require("../../src/tasks/list.js");
 
 /*タスクを登録するルーティング */
 router.post("/tasks",async function(req, res, next){
@@ -27,3 +13,10 @@ router.post("/tasks",async function(req, res, next){
   });
 
 module.exports = router;
+
+/*タスク一覧を取得するルーティング */
+ //Httpメソッド(get)を定義=router.get
+ router.get("/list", async function(req, res, next){  //API実行で処理される関数=function(req, res, next){~}
+  const taskList = await list.getListTask();          //タスク一覧を取得する関数、getListTask()を呼び出す
+  res.send(taskList);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
+});
