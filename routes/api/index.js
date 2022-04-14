@@ -16,7 +16,8 @@ module.exports = router;
 
 /*タスク一覧を取得するルーティング */
  //Httpメソッド(get)を定義=router.get
- router.get("/list", async function(req, res, next){  //API実行で処理される関数=function(req, res, next){~}
-  const taskList = await list.getListTask();          //タスク一覧を取得する関数、getListTask()を呼び出す
-  res.send(taskList);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
+ router.get("/list", async function(req, res, next){  
+ console.log(req.body);
+ const taskList = await list.getListTask(req.body);          //タスク一覧を取得する関数、getListTask()を呼び出す
+ res.send(taskList);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
 });

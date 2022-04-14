@@ -151,7 +151,12 @@
         </tr>
       </table>
     </div>
-
+    
+    <div>
+    <ul id="list-contents" class="list-contents">
+      <li>abc</li>
+    </ul>
+  </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -195,6 +200,18 @@
       //画面をリロード
       // window.location.reload();
       // console.log("aaa")
+      });
+    
+      //一覧
+      $(async function() {
+        const data = await httpGet("//" + window.location.host +"/api/list");
+        const lists = data.map((item) => {
+          console.log(item);
+          return `<li>${item.task_name}</li>`;
+        
+        });
+        // console.log($("#list-contents").css);
+        $(".list-contents").append(lists);
       });
     </script>
 
