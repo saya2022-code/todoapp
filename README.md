@@ -17,3 +17,5 @@ npm run start
 3. 動作確認する
 
 ブラウザから `http://localhost:3333/views/` を開く
+一覧：http://localhost:3333/api/list
+
