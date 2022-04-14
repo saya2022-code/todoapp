@@ -20,10 +20,10 @@ var router = express.Router();
 const tasks = require("../../src/tasks/create.js");
 
 /*タスクを登録するルーティング */
-router.post("/tasks", function(req, res, next){
-  console.log(req,body);
-  const createTask = create.postCreateTasks(req,body);
-  res.send(JSON.stringify(createTask));
+router.post("/tasks",async function(req, res, next){
+  console.log(req.body);
+  const postTask = await tasks.postTasks(req.body);
+  res.send(postTask);
   });
 
 module.exports = router;

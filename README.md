@@ -16,4 +16,4 @@ npm run start
 
 3. 動作確認する
 
-ブラウザから `http://localhost:3333` を開く
+ブラウザから `http://localhost:3333/views/` を開く
