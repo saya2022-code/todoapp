@@ -12,7 +12,6 @@ getListTask = async function(body){
     const sql = "SELECT task_name,deadline,category_id,task_status FROM todoapp.t_task";
     let d = [];
     const[rows,fields] = await connection.query(sql,d);
-    
     return rows;
   }catch(e) {
     console.log(e);
