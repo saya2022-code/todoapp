@@ -166,6 +166,7 @@
           <li>
             <span>タスク名</span>
             <span>期限</span>
+            <span>カテゴリー</span>
             <span>ステータス</span>
             <span>更新・削除</span>
           </li>
@@ -212,7 +213,6 @@
       //新規登録
       $("#register-Task").on("click", async function() {
     
-
       //   task = document.getElementById("taskName").value;
       // alert(task);
             //リクエストデータをフォームから取得 -->
@@ -228,9 +228,9 @@
         requestData
       );
 
-      alert("この内容で登録しますか？");
-      //画面をリロード
-      window.location.reload();
+      // alert("この内容で登録しますか？");
+      // //画面をリロード
+      // window.location.reload();
       });
     
       //一覧
@@ -238,12 +238,19 @@
         const data = await httpGet("//" + window.location.host +"/api/list");
         const lists = data.map((item) => {
           console.log(item);
-          
+           
+          // 日付を 年月日に変換
+          const createDate = new Date(item.deadline);
+          const year = createDate.getFullYear();
+          const month = createDate.getMonth() + 1;
+          const day = createDate.getDate();
+          const deadline = year + "年" + month + "月" + day + "日";
+
           return `<li>
-                
                   <div class="head-span">
                   <span class="first">${item.task_name}</span>
-                  <span class="next">${item.deadline}</span>
+                  <span class="next">${deadline}</span>
+                  <span class="next">${item.category_name}</span>
                   <span class="next">${item.task_status}</span>
                   <span class="next"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal">更新</button>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button></span>
