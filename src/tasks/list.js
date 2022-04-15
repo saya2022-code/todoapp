@@ -9,7 +9,7 @@ getListTask = async function(body){
     connection = await mysql.createConnection(config.dbSetting);
     //ここにsql
 // return "abc";
-    const sql = "SELECT task_name,deadline,category_id,task_status FROM todoapp.t_task";
+    const sql = "SELECT t_task.task_name,t_task.deadline,m_category.category_name,t_task.task_status FROM t_task INNER JOIN m_category ON t_task.category_id = m_category.id";
     let d = [];
     const[rows,fields] = await connection.query(sql,d);
     return rows;

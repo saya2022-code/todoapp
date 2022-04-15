@@ -55,7 +55,9 @@ table th
 
 .task-title{
   list-style: none;
+  width: 840px;
 }
+
 .list-contents{
   width: 840px;
   height: 200px;
