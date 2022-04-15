@@ -212,25 +212,23 @@
     <script>
       //新規登録
       $("#register-Task").on("click", async function() {
-    
-      //   task = document.getElementById("taskName").value;
-      // alert(task);
-            //リクエストデータをフォームから取得 -->
+        alert("この内容で登録しますか？");
+        //画面をリロード
+        window.location.reload();
+
+        //リクエストデータをフォームから取得 -->
         const requestData = {
           taskName : $("#taskName").val(),
           deadline : $("#deadline").val(),
           category : $("#category").val(),
         };
       
-      //新規登録APIを実行
+        //新規登録APIを実行
       const respons = await httpPost(
         "//" + window.location.host + "/api/tasks",
         requestData
       );
 
-      // alert("この内容で登録しますか？");
-      // //画面をリロード
-      // window.location.reload();
       });
     
       //一覧
