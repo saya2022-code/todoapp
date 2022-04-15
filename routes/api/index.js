@@ -18,6 +18,8 @@ module.exports = router;
  //Httpメソッド(get)を定義=router.get
  router.get("/list", async function(req, res, next){  
  console.log(req.body);
- const taskList = await list.getListTask(req.body);          //タスク一覧を取得する関数、getListTask()を呼び出す
+ const taskList = await list.getListTask(req.body);          
+ //タスク一覧を取得する関数、getListTask()を呼び出す(list.js)
+ //そしてtaskListに代入し、レスポンスとして返却
  res.send(taskList);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
 });
