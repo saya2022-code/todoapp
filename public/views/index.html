@@ -119,52 +119,22 @@
         </div>
     </div>
 
-
+    
     <div class="taskList" id="taskList">
       <table bgcolor="#FFFFFF">
-        <tr class="taskHead">
-          <th></th>
-            <td>タスク名</td>
-            <td>期限</td>
-            <td>ステータス</td>
-            <td>更新・削除</td>
-        </tr>
-        <tr width="2%">
-            <th bgcolor="#cccccc"></th>
-            <td  width="50%">犬の餌を購入する</td>
-            <td  width="20%">2022年5月4日</td>
-            <td  width="13%">進行中</td>
-            <td  width="15%">
-              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#altermodal">更新</button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button>
-            </td>
-        </tr>
-        <tr>
-          <th bgcolor="#cccccc"></th>
-            <td>犬の散歩をする</td>
-            <td>2022年5月6日</td>
-            <td>未完了</td>
-            <td>
-              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#altermodal">更新</button>
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button>
-            </td>
-        </tr>
-      </table>
-    </div>
-    
-    <div class="list-box">
-      <table>
         <thead>
           <tr class="taskHead">
-            <th></th>
+            <th bgcolor="#cccccc"></th>
             <td>タスク名</td>
             <td>期限</td>
-            <td>ステータス</td>
+            <td>カテゴリー</td>
             <td>更新・削除</td>
           </tr>
       </thead>
       <tbody id="list-contents" class="list-contents">    
+        <!-- この間にreturnが入る -->
       </tbody>
+    </table>
     </div>
 
     <!-- Optional JavaScript -->
@@ -223,11 +193,11 @@
 
           return `<tr>
                   <div class="head-td">
-                  <td></td>
-                  <td>${item.task_name}</td>
-                  <td class="next">${deadline}</td>
-                  <td class="next">${item.category_name}</td>
-                  <td class="next"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal">更新</button>
+                  <td width="2%" bgcolor="#cccccc"></td>
+                  <td width="50%">${item.task_name}</td>
+                  <td width="20%">${deadline}</td>
+                  <td width="13%">${item.category_name}</td>
+                  <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal">更新</button>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button></td>
                   </div>
                   </tr>`;    
