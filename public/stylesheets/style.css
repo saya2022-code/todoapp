@@ -49,38 +49,3 @@ table th
   margin: auto;
   padding-bottom: 10px;
 }
-
-.list-box{
-  border-bottom: black;
-}
-
-.task-title{
-  list-style: none;
-  width: 840px;
-}
-
-.list-contents{
-  width: 840px;
-  height: 200px;
-  list-style: none;
-}
-
-li.first {
-  width: 200px;
-}
-li.next {
-  /* border: 1px solid #ccc; */
-  width: 200px;
-}
-
-span {
-  display: inline-block;
-	width: 150px;
-	height: 20px;
-  padding: 10px;
-}
-
-/* .head-span{ */
-  /* border-left: 1px solid #3dbfb8;
-  border-bottom: 1px solid #3dbfb8; */
-/* } */
