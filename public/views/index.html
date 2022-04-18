@@ -72,27 +72,27 @@
                 <label for="taskName">タスク</label>
                 <input id="taskName" class="form-control" name=”taskName”/>
                 <label for="deadline">期限</label>
-                <input id="deadline" class="form-control" name=”deadline”/>
+                <input type="date" id="deadline" class="form-control" name=”deadline”/>
 
                 <label for="category">カテゴリ</label>
                 <select id="category" class="form-control" name=”category”>
-                  <option>勉強</option>
-                  <option>趣味</option>
-                  <option>IT</option>
-                  <option>英語</option>
+                  <option value="1">生活</option>
+                  <option value="2">勉強</option>
+                  <option value="3">仕事</option>
+                  <option value="4">趣味</option>
                 </select>
 
                 <label for="status">ステータス</label>
                 <select id="status" class="form-control" name=”status”>
-                  <option>未完了</option>
-                  <option>進行中</option>
+                  <option value="1">未完了</option>
+                  <option value="2">進行中</option>
                   <option>完了</option>
                 </select>
 
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                <button type="button" id="alter-Task" class="btn btn-primary">登録</button>
+                <button type="button" id="alter-Task" class="btn btn-primary">保存</button>
               </div>
             </div>
           </div>

@@ -23,3 +23,13 @@ module.exports = router;
  //そしてtaskListに代入し、レスポンスとして返却
  res.send(taskList);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
 });
+
+/*タスク1件を取得するルーティング */
+ //Httpメソッド(get)を定義=router.get
+ router.get("/list/:id", async function(req, res, next){  
+ const getTaskId = await list.getTaskId(req.params.id);          
+  //タスク一覧を取得する関数、getListTask()を呼び出す(list.js)
+  //そしてtaskListに代入し、レスポンスとして返却
+  res.send(getTaskId);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
+ });
+ 
