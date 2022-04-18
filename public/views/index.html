@@ -86,7 +86,7 @@
                 <select id="status" class="form-control" name="status">
                   <option value="1">未完了</option>
                   <option value="2">進行中</option>
-                  <option>完了</option>
+                  <option value="3">完了</option>
                 </select>
 
               </div>
@@ -128,6 +128,7 @@
             <td>タスク名</td>
             <td>期限</td>
             <td>カテゴリー</td>
+            <td>ステータス</td>
             <td>更新・削除</td>
           </tr>
       </thead>
@@ -194,9 +195,10 @@
           return `<tr>
                   <div class="head-td">
                   <td width="2%" bgcolor="#cccccc"></td>
-                  <td width="50%">${item.task_name}</td>
-                  <td width="20%">${deadline}</td>
-                  <td width="13%">${item.category_name}</td>
+                  <td width="40%">${item.task_name}</td>
+                  <td width="15%">${deadline}</td>
+                  <td width="10%">${item.category_name}</td>
+                  <td width="10%">${item.task_status}</td>
                   <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name}>削除</button></td>
                   </div>
@@ -215,18 +217,19 @@
       console.log(response);
 
     //日付を 年月日に変換
-      const alterDate = new Date(response[0].deadline);
-      const year = alterDate.getFullYear();
-      const month = alterDate.getMonth() + 1;
-      const day = alterDate.getDate();
-      const deadline = year + "年" + month + "月" + day + "日";
-      console.log(response[0].category_id);
+      const date = new Date(response[0].deadline);
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      const deadline = `${year}-${month}-${day}`;
+
+      // console.log(response[0].category_id);
     //初期値のセット
      $("#altermodal input[name=id]").val(response[0].id);
      $("#altermodal input[name=taskName]").val(response[0].task_name);
      $("#altermodal input[name=deadline]").val(deadline);
      $("#altermodal select[name=category]").val(response[0].category_id);
-     $("#altermodal select[name=status]").val(response[0].status);
+     $("#altermodal select[name=status]").val(response[0].task_status);
     });
 
   </script>
