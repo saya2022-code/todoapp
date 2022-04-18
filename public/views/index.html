@@ -153,28 +153,7 @@
     </div>
     
     <div class="list-box">
-      <!-- <table bgcolor="#FFFFFF">
-        <tr class="taskHead">
-          <th></th>
-            <td>タスク名</td>
-            <td>期限</td>
-            <td>ステータス</td>
-            <td>更新・削除</td>
-        </tr>
-        </table> -->
-      <ul class="task-title">
-          <li>
-            <span>タスク名</span>
-            <span>期限</span>
-            <span>カテゴリー</span>
-            <span>ステータス</span>
-            <span>更新・削除</span>
-          </li>
-      </ul>
-
-      <ul id="list-contents" class="list-contents">
-      </ul>
-      <!-- <table>
+      <table>
         <thead>
           <tr class="taskHead">
             <th></th>
@@ -183,11 +162,9 @@
             <td>ステータス</td>
             <td>更新・削除</td>
           </tr>
-      </thead> -->
-        <!-- <tr id="list-contents" class="list-contents">
-         <td></td> -->
-        <!-- </tr> -->
-      <!-- </table> -->
+      </thead>
+      <tbody id="list-contents" class="list-contents">    
+      </tbody>
     </div>
 
     <!-- Optional JavaScript -->
@@ -244,16 +221,16 @@
           const day = createDate.getDate();
           const deadline = year + "年" + month + "月" + day + "日";
 
-          return `<li>
-                  <div class="head-span">
-                  <span class="first">${item.task_name}</span>
-                  <span class="next">${deadline}</span>
-                  <span class="next">${item.category_name}</span>
-                  <span class="next">${item.task_status}</span>
-                  <span class="next"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal">更新</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button></span>
+          return `<tr>
+                  <div class="head-td">
+                  <td></td>
+                  <td>${item.task_name}</td>
+                  <td class="next">${deadline}</td>
+                  <td class="next">${item.category_name}</td>
+                  <td class="next"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal">更新</button>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button></td>
                   </div>
-                  </li>`;        
+                  </tr>`;    
         });
         $(".list-contents").append(lists);
       });
