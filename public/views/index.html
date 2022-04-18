@@ -220,13 +220,13 @@
       const month = alterDate.getMonth() + 1;
       const day = alterDate.getDate();
       const deadline = year + "年" + month + "月" + day + "日";
-      console.log(response[0].task_status);
+      console.log(response[0].category_id);
     //初期値のセット
      $("#altermodal input[name=id]").val(response[0].id);
      $("#altermodal input[name=taskName]").val(response[0].task_name);
      $("#altermodal input[name=deadline]").val(deadline);
      $("#altermodal select[name=category]").val(response[0].category_id);
-     $("#altermodal select[name=status]").val(response[0].task_status);
+     $("#altermodal select[name=status]").val(response[0].status);
     });
 
   </script>
