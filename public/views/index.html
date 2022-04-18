@@ -39,11 +39,11 @@
               </div>
               <div class="modal-body" id="create-form">
                 <label for="taskName">タスク</label>
-                <input id="taskName" class="form-control" name=”taskName”/>
+                <input id="taskName" class="form-control" name="taskName"/>
                 <label for="deadline">期限</label>
-                <input type="date" id="deadline" class="form-control" name=”deadline”/>
+                <input type="date" id="deadline" class="form-control" name="deadline"/>
                 <label for="category">カテゴリ</label>
-                <select id="category" class="form-control" name=”category”>
+                <select id="category" class="form-control" name="category">
                   <option value="1">生活</option>
                   <option value="2">勉強</option>
                   <option value="3">仕事</option>
@@ -62,7 +62,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="altermodal">タスクの更新</h5>
+                <h5 class="modal-title" >タスクの更新</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,12 +70,12 @@
               <div class="modal-body">
 
                 <label for="taskName">タスク</label>
-                <input id="taskName" class="form-control" name=”taskName”/>
+                <input id="taskName" class="form-control" name="taskName"/>
                 <label for="deadline">期限</label>
-                <input type="date" id="deadline" class="form-control" name=”deadline”/>
+                <input type="date" id="deadline" class="form-control" name="deadline"/>
 
                 <label for="category">カテゴリ</label>
-                <select id="category" class="form-control" name=”category”>
+                <select id="category" class="form-control" name="category">
                   <option value="1">生活</option>
                   <option value="2">勉強</option>
                   <option value="3">仕事</option>
@@ -83,7 +83,7 @@
                 </select>
 
                 <label for="status">ステータス</label>
-                <select id="status" class="form-control" name=”status”>
+                <select id="status" class="form-control" name="status">
                   <option value="1">未完了</option>
                   <option value="2">進行中</option>
                   <option>完了</option>
@@ -197,14 +197,38 @@
                   <td width="50%">${item.task_name}</td>
                   <td width="20%">${deadline}</td>
                   <td width="13%">${item.category_name}</td>
-                  <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal">更新</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">削除</button></td>
+                  <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name}>削除</button></td>
                   </div>
                   </tr>`;    
         });
         $(".list-contents").append(lists);
       });
-    </script>
 
+    //1件取得
+    $(document).on("click","#altermodal-get",async function(){
+      // alert("この内容で保存しますか？");
+      const id = $(this).data("id");
+      const response = await httpGet(        
+        "//" + window.location.host + `/api/list/${id}`,
+      );
+      console.log(response);
+
+    //日付を 年月日に変換
+      const alterDate = new Date(response[0].deadline);
+      const year = alterDate.getFullYear();
+      const month = alterDate.getMonth() + 1;
+      const day = alterDate.getDate();
+      const deadline = year + "年" + month + "月" + day + "日";
+      console.log(response[0].task_status);
+    //初期値のセット
+     $("#altermodal input[name=id]").val(response[0].id);
+     $("#altermodal input[name=taskName]").val(response[0].task_name);
+     $("#altermodal input[name=deadline]").val(deadline);
+     $("#altermodal select[name=category]").val(response[0].category_id);
+     $("#altermodal select[name=status]").val(response[0].task_status);
+    });
+
+  </script>
   </body>
 </html>
