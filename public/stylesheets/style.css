@@ -50,8 +50,9 @@ table th
   padding-bottom: 10px;
 }
 
-/* .list-box{
-} */
+.list-box{
+  border-bottom: black;
+}
 
 .task-title{
   list-style: none;
