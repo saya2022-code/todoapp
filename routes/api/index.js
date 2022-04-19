@@ -33,3 +33,17 @@ module.exports = router;
   //getTaskId()をgetTaskIdに代入してそのレスポンスbodyを返却する
  });
  
+ /*タスクを更新するルーティング */
+ router.patch("/list/:id", async function(req, res, next){ 
+  console.log(req.params.id,req.body); 
+ const patchTaskId = await list.patchTaskId(req.params.id, req.body);
+  res.send(patchTaskId);                                 
+  });
+
+  /*タスクを削除するルーティング */
+ router.delete("/list/:id", async function(req, res, next){ 
+  console.log(req.params.id); 
+ const deleteTaskId = await list.deleteTaskId(req.params.id);
+  res.send(deleteTaskId);                                 
+  });
+ 

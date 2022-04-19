@@ -108,7 +108,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                {$list-group-item}
+                
               </div>
               <div class="deletemodal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
@@ -200,7 +200,7 @@
                   <td width="10%">${item.category_name}</td>
                   <td width="10%">${item.task_status}</td>
                   <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name}>削除</button></td>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name} id="deletemodal-get">削除</button></td>
                   </div>
                   </tr>`;    
         });
@@ -231,6 +231,43 @@
      $("#altermodal select[name=category]").val(response[0].category_id);
      $("#altermodal select[name=status]").val(response[0].task_status);
     });
+
+      //1件更新
+        $("#alter-Task").on("click",async function(){
+      // alert("この内容に変更しますか？");
+      const id = $("#altermodal input[name=id]").val();
+
+      //リクエストデータをフォームから取得 -->
+        const requestData = {
+          taskName : $("#altermodal input[name=taskName]").val(),
+          deadline : $("#altermodal input[name=deadline]").val(),
+          category : $("#altermodal select[name=category]").val(),
+          status : $("#altermodal select[name=status]").val(),
+        };
+      
+        //新規登録APIを実行
+      const response = await httpUpdate(
+        "//" + window.location.host + `/api/list/${id}`,
+        requestData
+      );
+      console.log(response);
+    });
+
+
+    //1件削除
+      $(document).on("click","#deletemodal-get",async function(){
+      const taskName = $(this).data("delete");
+      if(confirm(`この内容を削除しますか？ \n ${taskName}`)){
+        const id = $(this).data("id");
+
+      //削除APIを実行
+      const response = await httpDelete(        
+        "//" + window.location.host + `/api/list/${id}`,
+      );
+      console.log(response);
+     }
+    });
+
 
   </script>
   </body>
