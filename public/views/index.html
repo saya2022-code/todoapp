@@ -107,12 +107,12 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                
+              <div class="modal-body" id="deletemodal-body">
+               
               </div>
               <div class="deletemodal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
-                <button type="button" id="delete-task" class="btn btn-primary btn-sm">OK</button>
+                <button type="button" id="deletemodal-get" class="btn btn-primary btn-sm">OK</button>
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@
                   <td width="10%">${item.category_name}</td>
                   <td width="10%">${item.task_status}</td>
                   <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name} id="deletemodal-get">削除</button></td>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name} id="delete-button" >削除</button></td>
                   </div>
                   </tr>`;    
         });
@@ -209,7 +209,6 @@
 
     //1件取得
     $(document).on("click","#altermodal-get",async function(){
-      // alert("この内容で保存しますか？");
       const id = $(this).data("id");
       const response = await httpGet(        
         "//" + window.location.host + `/api/list/${id}`,
@@ -232,42 +231,56 @@
      $("#altermodal select[name=status]").val(response[0].task_status);
     });
 
-      //1件更新
-        $("#alter-Task").on("click",async function(){
-      // alert("この内容に変更しますか？");
+      //更新ボタン→保存ボタン
+        $("#altermodal-get").on("click",async function(){
       const id = $("#altermodal input[name=id]").val();
+      // const id = $(this).data("id");
+      $("#alter-Task").data("id",$(this).data("id"));
+      console.log($("#altermodal input[name=id]"));
+      });
 
-      //リクエストデータをフォームから取得 -->
+        //保存ボタンを押した時の処理
+        $('#alter-Task').on("click",async function(){
+        // console.log($(this).data("id"));
+
+        //リクエストデータをフォームから取得 -->
         const requestData = {
           taskName : $("#altermodal input[name=taskName]").val(),
           deadline : $("#altermodal input[name=deadline]").val(),
           category : $("#altermodal select[name=category]").val(),
           status : $("#altermodal select[name=status]").val(),
         };
-      
-        //新規登録APIを実行
-      const response = await httpUpdate(
-        "//" + window.location.host + `/api/list/${id}`,
-        requestData
-      );
-      console.log(response);
+        
+        //更新APIを実行
+          const response = await httpUpdate(
+          "//" + window.location.host + `/api/list/${$(this).data("id")}`,
+          requestData
+          );
+          console.log(response);
     });
 
 
-    //1件削除
-      $(document).on("click","#deletemodal-get",async function(){
+    //削除ボタン→okボタン
+      $(document).on("click","#delete-button",async function(){
       const taskName = $(this).data("delete");
-      if(confirm(`この内容を削除しますか？ \n ${taskName}`)){
-        const id = $(this).data("id");
+      $("#deletemodal-get").data("id",$(this).data("id"));
+      console.log($("#deletemodal-get").data("id"));
 
-      //削除APIを実行
-      const response = await httpDelete(        
-        "//" + window.location.host + `/api/list/${id}`,
-      );
-      console.log(response);
-     }
+      // if(confirm(`この内容を削除しますか？ \n ${taskName}`)){
+      //   const id = $(this).data("id");
     });
 
+    //okボタンを押した時の処理
+    $('#deletemodal-get').on("click",async function(){
+      console.log($(this).data("id"));
+
+       //削除APIを実行
+        const response = await httpDelete(        
+        "//" + window.location.host + `/api/list/${$(this).data("id")}`,
+      );
+      console.log(response);
+      });
+ 
 
   </script>
   </body>
