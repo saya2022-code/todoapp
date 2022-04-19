@@ -237,7 +237,7 @@
       // const id = $(this).data("id");
       $(document).on("click","#altermodal-get",async function(){
       $("#alter-Task").data("id",$(this).data("id"));
-      console.log($("#alter-Task").data("id")); //この状態だとID取得できる
+      console.log($("#alter-Task").data("id")); //この3行だとID取得できる
       });
 
         //保存ボタンを押した時の処理
@@ -258,29 +258,32 @@
           requestData
           );
           console.log(response);
+
+          //画面をリロード
+          window.location.reload();
     });
 
 
     //削除ボタン→okボタン
       $(document).on("click","#delete-button",async function(){
-      // const taskName = $(this).data("delete");
       $("#deletemodal-get").data("id",$(this).data("id"));
       console.log($("#deletemodal-get").data("id"));
 
-      // if(confirm(`この内容を削除しますか？ \n ${taskName}`)){
-      //   const id = $(this).data("id");
     });
 
     //okボタンを押した時の処理
     $('#deletemodal-get').on("click",async function(){
       console.log($(this).data("id"));
 
-       //削除APIを実行
-        const response = await httpDelete(        
-        "//" + window.location.host + `/api/list/${$(this).data("id")}`,
-      );
+    //削除APIを実行
+     const response = await httpDelete(        
+    "//" + window.location.host + `/api/list/${$(this).data("id")}`,
+    );
       console.log(response);
-      });
+
+      //画面をリロード
+      window.location.reload();
+    });
  
 
   </script>
