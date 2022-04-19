@@ -222,7 +222,7 @@
       const day = ("0" + date.getDate()).slice(-2);
       const deadline = `${year}-${month}-${day}`;
 
-      // console.log(response[0].category_id);
+      console.log($("#altermodal input[name=id]"));
     //初期値のセット
      $("#altermodal input[name=id]").val(response[0].id);
      $("#altermodal input[name=taskName]").val(response[0].task_name);
@@ -232,16 +232,17 @@
     });
 
       //更新ボタン→保存ボタン
-        $("#altermodal-get").on("click",async function(){
-      const id = $("#altermodal input[name=id]").val();
+      //   $("#altermodal-get").on("click",async function(){
+      // const id = $("#altermodal input[name=id]").val();
       // const id = $(this).data("id");
+      $(document).on("click","#altermodal-get",async function(){
       $("#alter-Task").data("id",$(this).data("id"));
-      console.log($("#altermodal input[name=id]"));
+      console.log($("#alter-Task").data("id")); //この状態だとID取得できる
       });
 
         //保存ボタンを押した時の処理
         $('#alter-Task').on("click",async function(){
-        // console.log($(this).data("id"));
+          console.log($(this).data("id")); //成功(deleteと同じ構成で書くと良い)
 
         //リクエストデータをフォームから取得 -->
         const requestData = {
@@ -250,7 +251,7 @@
           category : $("#altermodal select[name=category]").val(),
           status : $("#altermodal select[name=status]").val(),
         };
-        
+
         //更新APIを実行
           const response = await httpUpdate(
           "//" + window.location.host + `/api/list/${$(this).data("id")}`,
@@ -262,7 +263,7 @@
 
     //削除ボタン→okボタン
       $(document).on("click","#delete-button",async function(){
-      const taskName = $(this).data("delete");
+      // const taskName = $(this).data("delete");
       $("#deletemodal-get").data("id",$(this).data("id"));
       console.log($("#deletemodal-get").data("id"));
 
