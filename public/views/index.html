@@ -102,13 +102,13 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="deletemodalLabel">下記のタスクを排除しますか？</h5>
+                <h5 class="modal-title" id="deletemodalLabel">下記のタスクを削除しますか？</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body" id="deletemodal-body">
-               
+                <p id="memo"></p>
               </div>
               <div class="deletemodal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
@@ -266,15 +266,23 @@
 
     //削除ボタン→okボタン
       $(document).on("click","#delete-button",async function(){
+      
       $("#deletemodal-get").data("id",$(this).data("id"));
-      console.log($("#deletemodal-get").data("id"));
+      $("#deletemodal-body").data("delete",$(this).data("delete")); //第2引数までdeleteをセットする必要
+      console.log($(this).data("id"));  
+      console.log($("#deletemodal-body").data("delete"));//taskNameを取れた    
+      
+      var str = $("#deletemodal-body").data("delete");
+      document.getElementById('deletemodal-body').innerHTML = str ; //表示成功！
 
     });
+
+    
 
     //okボタンを押した時の処理
     $('#deletemodal-get').on("click",async function(){
       console.log($(this).data("id"));
-
+      
     //削除APIを実行
      const response = await httpDelete(        
     "//" + window.location.host + `/api/list/${$(this).data("id")}`,
@@ -285,7 +293,6 @@
       window.location.reload();
     });
  
-
   </script>
   </body>
 </html>
