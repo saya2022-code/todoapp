@@ -26,10 +26,24 @@ module.exports = router;
 
 /*タスク1件を取得するルーティング */
  //Httpメソッド(get)を定義=router.get
- router.get("/list/:id", async function(req, res, next){  
+ router.get("/list/:id", async function(req, res, next){ 
+ console.log(req.params.id); 
  const getTaskId = await list.getTaskId(req.params.id);          
-  //タスク一覧を取得する関数、getListTask()を呼び出す(list.js)
-  //そしてtaskListに代入し、レスポンスとして返却
-  res.send(getTaskId);                                 //getListTask()をtaskListに代入してそのレスポンスbodyを返却する
+  res.send(getTaskId);                                 
+  //getTaskId()をgetTaskIdに代入してそのレスポンスbodyを返却する
  });
+ 
+ /*タスクを更新するルーティング */
+ router.patch("/list/:id", async function(req, res, next){ 
+  console.log(req.params.id,req.body); 
+ const patchTaskId = await list.patchTaskId(req.params.id, req.body);
+  res.send(patchTaskId);                                 
+  });
+
+  /*タスクを削除するルーティング */
+ router.delete("/list/:id", async function(req, res, next){ 
+  console.log(req.params.id); 
+ const deleteTaskId = await list.deleteTaskId(req.params.id);
+  res.send(deleteTaskId);                                 
+  });
  
