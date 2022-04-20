@@ -85,7 +85,7 @@
                 <label for="status">ステータス</label>
                 <select id="status" class="form-control" name="status">
                   <option value="1">未完了</option>
-                  <option value="2">進行中</option>
+                  <option value="進行中">進行中</option>
                   <option value="3">完了</option>
                 </select>
 
@@ -160,9 +160,10 @@
     <script>
       //新規登録
       $("#register-Task").on("click", async function() {
-        alert("この内容で登録しますか？");
-        //画面をリロード
-        window.location.reload();
+
+        // alert("この内容で登録しますか？");
+        const deleteName = $(this).data("delete");
+        if(confirm(`この内容で登録しますか？`) == true){
 
         //リクエストデータをフォームから取得 -->
         const requestData = {
@@ -176,6 +177,12 @@
         "//" + window.location.host + "/api/tasks",
         requestData
       );
+
+      //画面をリロード
+        window.location.reload();
+      }else{
+        return false;
+      }
 
       });
     
@@ -192,13 +199,18 @@
           const day = createDate.getDate();
           const deadline = year + "年" + month + "月" + day + "日";
 
+          //ステータスの表示
+          var selected = $("#status").children("option:selected");
+          var selectedText = selected.text();
+          console.log(selectedText);
+          
           return `<tr>
                   <div class="head-td">
                   <td width="2%" bgcolor="#cccccc"></td>
                   <td width="40%">${item.task_name}</td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
-                  <td width="10%">${item.task_status}</td>
+                  <td width="10%">${selectedText}</td>
                   <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name} id="delete-button" >削除</button></td>
                   </div>
