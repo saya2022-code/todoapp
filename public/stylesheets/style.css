@@ -4,18 +4,18 @@
 }
 
 body {
-  background-color: antiquewhite;
+  background: linear-gradient(to bottom, #FFC778, #FFF);
   margin: 10em;
   margin-top: 30px;  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .todo{
+  font-family: 'Vollkorn', serif;
   font-size: 50px;
   font-style: inherit;
   padding: auto;
   margin-bottom: 10px;
-
 }
 
 .container{

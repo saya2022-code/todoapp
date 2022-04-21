@@ -8,12 +8,5 @@ $("#taskName").focusout(function () {
   });
   
 
-// $("#alterName").focus(function () {
-//     const current = $(this).val().length;
-//       if(current < 1){
-//           $("#alterName-error",).text("文字を入力して下さい").css("color","red");
-//       }else if(current > 0){
-//           $("#alterName-error").text("");
-//       }
-//     });
+
 
