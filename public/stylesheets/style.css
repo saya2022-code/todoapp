@@ -22,7 +22,21 @@ body {
   display: flex;
 }
 
+.deletemodal-footer{
+  text-align: center;
+  padding-bottom: 10px;
+}
 
+.modal-bodys{
+  text-align: center;
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#cancel-button{
+  margin-right: 30px;
+}
 .taskList{
   padding: 0.5em 1em;
   margin: 2em 0;

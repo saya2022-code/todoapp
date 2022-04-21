@@ -40,9 +40,13 @@
               <div class="modal-body" id="create-form">
                 <label for="taskName">タスク</label>
                 <input id="taskName" class="form-control" name="taskName"/>
-                <label for="deadline">期限</label>
+                <p id="taskName-error"></p>
+                
+                <label for="deadline">期限 <br></label>
                 <input type="date" id="deadline" class="form-control" name="deadline"/>
-                <label for="category">カテゴリ</label>
+                <p></p>
+
+                <label for="category">カテゴリ <br></label>
                 <select id="category" class="form-control" name="category">
                   <option value="1">生活</option>
                   <option value="2">勉強</option>
@@ -50,6 +54,7 @@
                   <option value="4">趣味</option>
                 </select>
               </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
                 <button type="button" id="register-Task" class="btn btn-primary">登録</button>
@@ -70,9 +75,11 @@
               <div class="modal-body">
 
                 <label for="taskName">タスク</label>
-                <input id="taskName" class="form-control" name="taskName"/>
+                <input id="askName" class="form-control" name="taskName"/>
+                <p id="askName-error"></p>
                 <label for="deadline">期限</label>
                 <input type="date" id="deadline" class="form-control" name="deadline"/>
+                <p></p>
 
                 <label for="category">カテゴリ</label>
                 <select id="category" class="form-control" name="category">
@@ -82,6 +89,7 @@
                   <option value="4">趣味</option>
                 </select>
 
+                <p></p>
                 <label for="status">ステータス</label>
                 <select id="status" class="form-control" name="status">
                   <option value="1">未完了</option>
@@ -107,11 +115,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" id="deletemodal-body">
+              <div class="modal-bodys" id="deletemodal-body">
                 <p id="memo"></p>
               </div>
               <div class="deletemodal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
+                <button type="button" id="cancel-button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
                 <button type="button" id="deletemodal-get" class="btn btn-primary btn-sm">OK</button>
               </div>
             </div>
@@ -138,6 +146,8 @@
     </table>
     </div>
 
+    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -156,6 +166,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="../javascripts/add.js"></script>
     <script src="../javascripts/index.js"></script>
     <script>
       //新規登録
@@ -206,8 +217,8 @@
           
           const statusValue = item.task_status; 
           if(statusValue == 1){
-            // statusValue.textContent = "未完了";
-            document.getElementById('status').innerHTML = statusValue; 
+            // document.getElementById('status').innerHTML = statusValue; 
+            $("#status",).textContent= "未完了";
             console.log("未完了");
           }else if(statusValue == 2){
             console.log("進行中");
@@ -218,7 +229,7 @@
           return `<tr>
                   <div class="head-td">
                   <td width="2%" bgcolor="#cccccc"></td>
-                  <td width="40%">${item.task_name} <br> ${item.id}</td>
+                  <td width="40%">${item.task_name} <li>タグ</li></td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
                   <td width="10%">${statusValue}</td>
