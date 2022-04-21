@@ -216,14 +216,13 @@
           // console.log(selectedText);
           
           const statusValue = item.task_status; 
+          var status = "";
           if(statusValue == 1){
-            // document.getElementById('status').innerHTML = statusValue; 
-            $("#status",).textContent= "未完了";
-            console.log("未完了");
+           status = "未完了";
           }else if(statusValue == 2){
-            console.log("進行中");
+           status = "進行中";
           }else if(statusValue == 3){
-            console.log("完了");
+           status = "完了";
           };
 
           return `<tr>
@@ -232,7 +231,7 @@
                   <td width="40%">${item.task_name} <li>タグ</li></td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
-                  <td width="10%">${statusValue}</td>
+                  <td width="10%">${status}</td>
                   <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name} id="delete-button" >削除</button></td>
                   </div>
