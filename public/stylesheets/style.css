@@ -1,8 +1,13 @@
+.header-box{
+  /* background-color: coral; */
+  
+}
+
 body {
   background-color: antiquewhite;
-  padding: 50px;
+  margin: 10em;
+  margin-top: 30px;  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
 }
 
 .todo{
@@ -22,6 +27,9 @@ body {
   display: flex;
 }
 
+.btn-success{
+  margin-left: 20px;
+}
 .deletemodal-footer{
   text-align: center;
   padding-bottom: 10px;
@@ -37,15 +45,19 @@ body {
 #cancel-button{
   margin-right: 30px;
 }
+
+.task-body{
+  height: 500px;
+  /* background-color: cornflowerblue; */
+}
 .taskList{
   padding: 0.5em 1em;
   margin: 2em 0;
-  width: 70%;
-
+  /* width: 70%; */
 }
 
 table{
-  border-spacing: 0px 5px;
+  border-collapse: separate;
 }
 
 .taskHead{
@@ -55,7 +67,8 @@ table th,td  {
   border:1px solid #dedede;
   /* padding: 10px;      余白指定 */
   text-align: center;
-
+  padding: 5px;
+  font-size: larger;
 }
 
 table th
