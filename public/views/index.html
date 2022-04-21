@@ -21,113 +21,115 @@
   </head>
 
   <body>
-    <header class="todo">TO DO リスト</header>
+    <div class="header-box">
+      <header class="todo">TO DO リスト</header>
 
-    <div class="container">
-      <!-- Content here -->
-      <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
-        ＋タスクを追加</button>
-      <!-- 追加Modal -->
-        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="createModal">タスク　登録</h5>
-                <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body" id="create-form">
-                <label for="taskName">タスク</label>
-                <input id="taskName" class="form-control" name="taskName"/>
-                <p id="taskName-error"></p>
-                
-                <label for="deadline">期限 <br></label>
-                <input type="date" id="deadline" class="form-control" name="deadline"/>
-                <p></p>
+      <div class="container">
+        <!-- Content here -->
+        <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
+          ＋タスクを追加</button>
+        <!-- 追加Modal -->
+          <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="createModal">タスク　登録</h5>
+                  <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="create-form">
+                  <label for="taskName">タスク</label>
+                  <input id="taskName" class="form-control" name="taskName"/>
+                  <p id="taskName-error"></p>
+                  
+                  <label for="deadline">期限 <br></label>
+                  <input type="date" id="deadline" class="form-control" name="deadline"/>
+                  <p></p>
 
-                <label for="category">カテゴリ <br></label>
-                <select id="category" class="form-control" name="category">
-                  <option value="1">生活</option>
-                  <option value="2">勉強</option>
-                  <option value="3">仕事</option>
-                  <option value="4">趣味</option>
-                </select>
-              </div>
+                  <label for="category">カテゴリ <br></label>
+                  <select id="category" class="form-control" name="category">
+                    <option value="1">生活</option>
+                    <option value="2">勉強</option>
+                    <option value="3">仕事</option>
+                    <option value="4">趣味</option>
+                  </select>
+                </div>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                <button type="button" id="register-Task" class="btn btn-primary">登録</button>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                  <button type="button" id="register-Task" class="btn btn-primary">登録</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <!-- 更新Modal テスト-->
-        <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" >タスクの更新</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
+        <!-- 更新Modal テスト-->
+          <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" >タスクの更新</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
 
-                <label for="taskName">タスク</label>
-                <input id="askName" class="form-control" name="taskName"/>
-                <p id="askName-error"></p>
-                <label for="deadline">期限</label>
-                <input type="date" id="deadline" class="form-control" name="deadline"/>
-                <p></p>
+                  <label for="taskName">タスク</label>
+                  <input id="taskName" class="form-control" name="taskName"/>
+                  <p id="taskName-error"></p>
+                  <label for="deadline">期限</label>
+                  <input type="date" id="deadline" class="form-control" name="deadline"/>
+                  <p></p>
 
-                <label for="category">カテゴリ</label>
-                <select id="category" class="form-control" name="category">
-                  <option value="1">生活</option>
-                  <option value="2">勉強</option>
-                  <option value="3">仕事</option>
-                  <option value="4">趣味</option>
-                </select>
+                  <label for="category">カテゴリ</label>
+                  <select id="category" class="form-control" name="category">
+                    <option value="1">生活</option>
+                    <option value="2">勉強</option>
+                    <option value="3">仕事</option>
+                    <option value="4">趣味</option>
+                  </select>
 
-                <p></p>
-                <label for="status">ステータス</label>
-                <select id="status" class="form-control" name="status">
-                  <option value="1">未完了</option>
-                  <option value="2">進行中</option>
-                  <option value="3">完了</option>
-                </select>
+                  <p></p>
+                  <label for="status">ステータス</label>
+                  <select id="status" class="form-control" name="status">
+                    <option value="1">未完了</option>
+                    <option value="2">進行中</option>
+                    <option value="3">完了</option>
+                  </select>
 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                <button type="button" id="alter-Task" class="btn btn-primary">保存</button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                  <button type="button" id="alter-Task" class="btn btn-primary">保存</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <!-- 削除Modal -->
-        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deletemodalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="deletemodalLabel">下記のタスクを削除しますか？</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-bodys" id="deletemodal-body">
-                <p id="memo"></p>
-              </div>
-              <div class="deletemodal-footer">
-                <button type="button" id="cancel-button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
-                <button type="button" id="deletemodal-get" class="btn btn-primary btn-sm">OK</button>
+        <!-- 削除Modal -->
+          <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deletemodalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deletemodalLabel">下記のタスクを削除しますか？</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-bodys" id="deletemodal-body">
+                  <p id="memo"></p>
+                </div>
+                <div class="deletemodal-footer">
+                  <button type="button" id="cancel-button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
+                  <button type="button" id="deletemodal-get" class="btn btn-primary btn-sm">OK</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+      </div>
     </div>
-
     
+  <div class="task-body">
     <div class="taskList" id="taskList">
       <table bgcolor="#FFFFFF">
         <thead>
@@ -145,7 +147,7 @@
       </tbody>
     </table>
     </div>
-
+  </div>
     
 
     <!-- Optional JavaScript -->
@@ -228,7 +230,7 @@
           return `<tr>
                   <div class="head-td">
                   <td width="2%" bgcolor="#cccccc"></td>
-                  <td width="40%">${item.task_name} <li>タグ</li></td>
+                  <td width="40%">${item.task_name} <li style="font-size: small;">タグ</li></td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
                   <td width="10%">${status}</td>
