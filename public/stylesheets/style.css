@@ -1,16 +1,16 @@
 .header-box{
   /* background-color: coral; */
-  
 }
 
 body {
-  background-color: antiquewhite;
+  background: linear-gradient(to bottom, #FFC778, #FFF);
   margin: 10em;
   margin-top: 30px;  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .todo{
+  font-family: 'Vollkorn', serif;
   font-size: 50px;
   font-style: inherit;
   padding: auto;
@@ -30,6 +30,11 @@ body {
 .btn-success{
   margin-left: 20px;
 }
+
+nav{
+  margin-top: 30px;
+  margin-left: 30px;
+}
 .deletemodal-footer{
   text-align: center;
   padding-bottom: 10px;
@@ -47,8 +52,8 @@ body {
 }
 
 .task-body{
-  height: 500px;
-  /* background-color: cornflowerblue; */
+  /* height: 500px; */
+  /* background-color: darkgreen; */
 }
 .taskList{
   padding: 0.5em 1em;
@@ -57,22 +62,47 @@ body {
 }
 
 table{
-  border-collapse: separate;
+  
+  border-collapse: collapse;
+  /* border-spacing: 0px 8px; */
+}
+
+td.status-red{
+  background-color: red;
+}
+td.status-green{
+  background-color: green;
+}
+td.status-blue{
+  background-color: blue;
 }
 
 .taskHead{
   text-align: center;
 }
 table th,td  {
-  border:1px solid #dedede;
+  border-bottom:1px solid black;
   /* padding: 10px;      余白指定 */
   text-align: center;
   padding: 5px;
   font-size: larger;
+  border-spacing: 5px;
 }
 
 table th
 .deletemodal-footer {
   margin: auto;
   padding-bottom: 10px;
+}
+
+.sticky-top{
+  width: 500px;
+  /* background-color:indianred; */
+  padding: 0.5em 1em;
+  margin-left:20px;
+}
+
+.deadTask-button{
+  margin-top: 20px;
+  margin-left: 20px;
 }

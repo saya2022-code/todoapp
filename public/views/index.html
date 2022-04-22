@@ -63,6 +63,11 @@
               </div>
             </div>
           </div>
+          <nav><li><a href="work.html">進行中</a></li></nav>
+          <div>
+            <button id="deadTask-button" class="deadTask-button"></button>
+          </div>
+
         <!-- 更新Modal テスト-->
           <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -134,22 +139,45 @@
       <table bgcolor="#FFFFFF">
         <thead>
           <tr class="taskHead">
-            <th bgcolor="#cccccc"></th>
-            <td>タスク名</td>
-            <td>期限</td>
-            <td>カテゴリー</td>
+            <th></th>
+            <td >タスク名</td>
+            <td >期限</td>
+            <td >カテゴリー</td>
             <td>ステータス</td>
             <td>更新・削除</td>
           </tr>
-      </thead>
+      </thead >
       <tbody id="list-contents" class="list-contents">    
         <!-- この間にreturnが入る -->
       </tbody>
     </table>
     </div>
-  </div>
-    
 
+    <!-- カウントテーブル -->
+      <div class="sticky-top">
+              <table class="table table-bordered">
+                  <tr id="table-count">
+                      <td>現在のタスク数</td>
+                      <td>完了済みタスク</td>
+                      <td>残りのタスク</td>
+                  </tr>
+                   <tr>
+                    <td><span class="totalCount" id="all-count"></span> 個</td>
+                    <td><span class="cntComp" id="cntComp"></span> 個
+                      <td><span class="cnt-Left" id="cntLeft"></span> 個</td>
+                  </tr>
+              </table>
+      </div> <!-- /.countTable -->
+
+    <!-- 期限切れの通知 -->
+    <div>
+      <ul>
+        <li>期限切れ前日のタスク</li>
+        <li></li>
+      </ul>
+    </div>
+
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -169,8 +197,10 @@
     ></script>
 
     <script src="../javascripts/add.js"></script>
+    <script src="../javascripts/taskCount.js"></script>
     <script src="../javascripts/index.js"></script>
     <script>
+      
       //新規登録
       $("#register-Task").on("click", async function() {
 
@@ -202,6 +232,7 @@
       //一覧
       $(async function() {
         const data = await httpGet("//" + window.location.host +"/api/list");
+        let  cntComp = 0;
         const lists = data.map((item) => {
           console.log(item);
            
@@ -212,24 +243,28 @@
           const day = createDate.getDate();
           const deadline = year + "年" + month + "月" + day + "日";
 
-          //ステータスの表示
-          // var selected = $("#status").children("option:selected");
-          // var selectedText = selected.val();
-          // console.log(selectedText);
-          
+          //ステータスのvalueをテキストに変える
           const statusValue = item.task_status; 
-          var status = "";
+          var status = ""; 
+          var statusClass = "";   
+             
           if(statusValue == 1){
            status = "未完了";
+           statusClass = "status-red";
+          //  document.getElementById("td-head").style.backgroundColor ='red'
           }else if(statusValue == 2){
            status = "進行中";
+           statusClass = "status-blue";
           }else if(statusValue == 3){
            status = "完了";
-          };
+           statusClass = "status-green";
+           cntComp += 1;
+          }
+          console.log(cntComp);
 
           return `<tr>
-                  <div class="head-td">
-                  <td width="2%" bgcolor="#cccccc"></td>
+                  <div id="tdh">
+                  <td width="2%" id="td-head" class=${statusClass}></td>
                   <td width="40%">${item.task_name} <li style="font-size: small;">タグ</li></td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
@@ -240,6 +275,26 @@
                   </tr>`;    
         });
         $(".list-contents").append(lists);
+        $(".cntComp").append(cntComp);
+
+        
+        //タスクの総数をカウント(cntAll)
+        var cntAll = document.getElementById("list-contents").childElementCount;
+        document.getElementById("all-count").innerHTML = cntAll;
+
+        //完了したタスク(cntComp)
+        // 残タスク数(cntAll-cntComp)
+        var cntLeft = cntAll-cntComp;
+        // console.log(cntLeft);
+        document.getElementById("cntLeft").innerHTML = cntLeft
+
+
+        // const Today = new Date();
+        // var deadTask = item.deadline
+        // var deadTime = Today - item.deadline //結果がtodyより24時間前
+        // if(deadTime < )
+        // console.log(date);
+        // table.textContent = '';  // table要素の子孫要素を空にする
       });
 
     //1件取得
@@ -267,9 +322,6 @@
     });
 
       //更新ボタン→保存ボタン
-      //   $("#altermodal-get").on("click",async function(){
-      // const id = $("#altermodal input[name=id]").val();
-      // const id = $(this).data("id");
       $(document).on("click","#altermodal-get",async function(){
       $("#alter-Task").data("id",$(this).data("id"));
       console.log($("#alter-Task").data("id")); //この3行だとID取得できる
@@ -293,9 +345,10 @@
           requestData
           );
           console.log(response);
-
+         
           //画面をリロード
           window.location.reload();
+          
     });
 
 
@@ -308,11 +361,10 @@
       console.log($("#deletemodal-body").data("delete"));//taskNameを取れた    
       
       var str = $("#deletemodal-body").data("delete");
-      document.getElementById('deletemodal-body').innerHTML = str ; //表示成功！
+      document.getElementById('deletemodal-body').innerHTML = str ; //モーダルにテキスト表示成功！
 
     });
 
-    
 
     //okボタンを押した時の処理
     $('#deletemodal-get').on("click",async function(){
@@ -330,4 +382,19 @@
  
   </script>
   </body>
+  <footer>
+    <!-- <div>
+      <h2 class="h6 font-weight-bold mb-3">本サイトについて</h2>
+      <h3 class="h6">閲覧推奨環境</h3>
+      <div class="small">
+          <dl class="row">
+              <dt class="col-2">PC:</dt>
+              <dd class="col-10">Chrome, Edge最新版</dd>
+              <dt class="col-2">SP:</dt>
+              <dd class="col-10">iOS11.0.3以上 iOS Safari, Chrome最新版</dd>
+          </dl>
+          <p><a href="https://github.com/kde-space/TO_DO_APP" target="_blank">その他使い方などはこちら</a></p>
+      </div>
+  </div> -->
+  </footer>
 </html>
