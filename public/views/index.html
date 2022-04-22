@@ -243,21 +243,15 @@
           var status = "";
           if(statusValue == 1){
            status = "未完了";
-          
+           
           }else if(statusValue == 2){
            status = "進行中";
-          
+        
           }else if(statusValue == 3){
            status = "完了";
-           var left = ${'#status'}.value;
-           document.getElementById('left-count').innerHTML = left;
-
+          //  var left = ${'#status'}.value;
+          //  document.getElementById('left-count').innerHTML = left;
           };
-
-         //
-          // var stri = "a";
-          // document.getElementById('all-count').innerHTML = stri ;
-          // console.log(stri);
 
           //カテゴリー別
           let categoryClassName = "";
@@ -280,7 +274,7 @@
 
           return `<tr>
                   <div class=${categoryClassName} id="">
-                  <td width="2%" bgcolor="#cccccc"></td>
+                  <td width="2%" id="td-head"></td>
                   <td width="40%">${item.task_name} <li style="font-size: small;">タグ</li></td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
@@ -292,9 +286,10 @@
         });
         $(".list-contents").append(lists);
 
+        
         //タスクの総数をカウント
         var cntAll = document.getElementById("list-contents").childElementCount;
-        document.getElementById('all-count').innerHTML = cntAll;
+        document.getElementById("all-count").innerHTML = cntAll;
 
         // 残タスク数
         // var leftCount = (() => {
@@ -334,9 +329,6 @@
     });
 
       //更新ボタン→保存ボタン
-      //   $("#altermodal-get").on("click",async function(){
-      // const id = $("#altermodal input[name=id]").val();
-      // const id = $(this).data("id");
       $(document).on("click","#altermodal-get",async function(){
       $("#alter-Task").data("id",$(this).data("id"));
       console.log($("#alter-Task").data("id")); //この3行だとID取得できる
@@ -360,10 +352,7 @@
           requestData
           );
           console.log(response);
-          
-          
-
-
+         
           //画面をリロード
           window.location.reload();
           
@@ -379,11 +368,10 @@
       console.log($("#deletemodal-body").data("delete"));//taskNameを取れた    
       
       var str = $("#deletemodal-body").data("delete");
-      document.getElementById('deletemodal-body').innerHTML = str ; //表示成功！
+      document.getElementById('deletemodal-body').innerHTML = str ; //モーダルにテキスト表示成功！
 
     });
 
-    
 
     //okボタンを押した時の処理
     $('#deletemodal-get').on("click",async function(){
