@@ -66,6 +66,16 @@ table{
   /* border-spacing: 0px 8px; */
 }
 
+td.status-red{
+  background-color: red;
+}
+td.status-blue{
+  background-color: blue;
+}
+td.status-green{
+  background-color: green;
+}
+
 .taskHead{
   text-align: center;
 }

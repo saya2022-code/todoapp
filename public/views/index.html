@@ -136,7 +136,7 @@
       <table bgcolor="#FFFFFF">
         <thead>
           <tr class="taskHead">
-            <th bgcolor="#cccccc"></th>
+            <th></th>
             <td >タスク名</td>
             <td >期限</td>
             <td >カテゴリー</td>
@@ -230,6 +230,7 @@
       //一覧
       $(async function() {
         const data = await httpGet("//" + window.location.host +"/api/list");
+        let  cntComp = 0;
         const lists = data.map((item) => {
           console.log(item);
            
@@ -242,25 +243,29 @@
 
           //ステータスのvalueをテキストに変える
           const statusValue = item.task_status; 
-          var status = "";         
-          let cntComp = 0;
+          var status = ""; 
+          var statusClass = "";       
           // contComp = statusValue[3];
 
           if(statusValue == 1){
            status = "未完了";
+           statusClass = "status-red";
           //  document.getElementById("td-head").style.backgroundColor ='red'
           }else if(statusValue == 2){
            status = "進行中";
+           statusClass = "status-blue";
+
           }else if(statusValue == 3){
            status = "完了";
+           statusClass = "status-green";
+
            cntComp += 1;
           }
           console.log(cntComp);
-          $(".cntComp").append(cntComp);
 
           return `<tr>
                   <div id="tdh">
-                  <td width="2%" id="td-head"></td>
+                  <td width="2%" id="td-head" class=${statusClass}></td>
                   <td width="40%">${item.task_name} <li style="font-size: small;">タグ</li></td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
@@ -271,7 +276,8 @@
                   </tr>`;    
         });
         $(".list-contents").append(lists);
-      
+        $(".cntComp").append(cntComp);
+
         
         //タスクの総数をカウント
         var cntAll = document.getElementById("list-contents").childElementCount;
