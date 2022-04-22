@@ -64,6 +64,9 @@
             </div>
           </div>
           <nav><li><a href="work.html">進行中</a></li></nav>
+          <div>
+            <button id="deadTask-button" class="deadTask-button"></button>
+          </div>
 
         <!-- 更新Modal テスト-->
           <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
@@ -174,6 +177,7 @@
       </ul>
     </div>
 
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -196,6 +200,7 @@
     <script src="../javascripts/taskCount.js"></script>
     <script src="../javascripts/index.js"></script>
     <script>
+      
       //新規登録
       $("#register-Task").on("click", async function() {
 
@@ -289,6 +294,7 @@
         // var deadTime = Today - item.deadline //結果がtodyより24時間前
         // if(deadTime < )
         // console.log(date);
+        // table.textContent = '';  // table要素の子孫要素を空にする
       });
 
     //1件取得

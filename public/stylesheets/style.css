@@ -101,3 +101,8 @@ table th
   padding: 0.5em 1em;
   margin-left:20px;
 }
+
+.deadTask-button{
+  margin-top: 20px;
+  margin-left: 20px;
+}

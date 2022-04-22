@@ -7,29 +7,28 @@ $("#taskName").focusout(function () {
     }
   });
   
+  //
 
+//完了していないタスクの表示
+  const filterTable = document.getElementById("dead-table");
+  const filterButton = document.getElementById("deadTask-button"); 
+  filterButton.textContent = '未完了で絞り込み';
+    
+  filterButton.addEventListener('click', () => {
+      // 絞り込み処理
+      $('tr:contains("未完了")').css('background-color', 'Yellow');
 
-//ステータスで色を変える
-const listIn = $(async function() {
-  //データの取得
-  const dataIn = await httpGet("//" + window.location.host +"/api/list");
-
-  dataIn.map((item) => {
-  console.log(item);
-  
-  const statusColor = item.task_status; 
-  console.log(statusColor);
-  })
+      // filterTable.textContent = ''; 
+      // for (const item of list) {
+      //   if (item.task_status == 1) {
+      //     addItem(item);
+// }
+// }
 });
-  var statusColorName = document.getElementById("td-head");
-  
-//   if(statusColor == 1){
-//     document.getElementById("td-head").style.backgroundColor ='red'
-   
-//   } else if(statusColor == 2){
-//     document.getElementById("td-head").style.backgroundColor ='blue'
-//   };
-//  });
-//  $(".tdh").append(listIn);
-// });
 
+//期限が前日のタスク
+// const Today = new Date();
+        // var deadTask = item.deadline
+        // var deadTime = Today - item.deadline //結果がtodyより24時間前
+        // if(deadTime < )
+        // console.log(date);
