@@ -150,32 +150,29 @@
     </table>
     </div>
 
-      <div class="col-md-4 col-xl-3">
+    <!-- カウントテーブル -->
       <div class="sticky-top">
-          <div class="statusBox mb-4 mb-md-5" id="js-statusBox">
               <table class="table table-bordered">
                   <tr id="table-count">
-                      <th>現在のタスク総数</th>
-                      <td><span class="totalCount" id="all-count">0</span> 個</td>
+                      <td>現在のタスク数</td>
+                      <td>完了済みタスク</td>
+                      <td>残りのタスク</td>
                   </tr>
-                  <tr>
-                      <th>残タスク数</th>
-                      <td><span class="leftCount" id="left-count">0</span> 個</td>
-                  </tr>
-                  <tr>
-                      <th>完了済みタスク数</th>
-                      <td><span class="cntComp" id="cntComp"></span> 個
-                          <div class="taskDeleteBtn js-none" id="js-taskDeleteBtn">
-                              <a href="#" class="small">完了済みタスクを削除</a>
-                          </div>
-                      </td>
+                   <tr>
+                    <td><span class="totalCount" id="all-count"></span> 個</td>
+                    <td><span class="cntComp" id="cntComp"></span> 個
+                      <td><span class="cnt-Left" id="cntLeft"></span> 個</td>
                   </tr>
               </table>
-      </div>
-  </div>
-      </div><!-- /.mainContainer -->
-  </div>
-    
+      </div> <!-- /.countTable -->
+
+    <!-- 期限切れの通知 -->
+    <div>
+      <ul>
+        <li>期限切れ前日のタスク</li>
+        <li></li>
+      </ul>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -244,9 +241,8 @@
           //ステータスのvalueをテキストに変える
           const statusValue = item.task_status; 
           var status = ""; 
-          var statusClass = "";       
-          // contComp = statusValue[3];
-
+          var statusClass = "";   
+             
           if(statusValue == 1){
            status = "未完了";
            statusClass = "status-red";
@@ -254,11 +250,9 @@
           }else if(statusValue == 2){
            status = "進行中";
            statusClass = "status-blue";
-
           }else if(statusValue == 3){
            status = "完了";
            statusClass = "status-green";
-
            cntComp += 1;
           }
           console.log(cntComp);
@@ -279,24 +273,22 @@
         $(".cntComp").append(cntComp);
 
         
-        //タスクの総数をカウント
+        //タスクの総数をカウント(cntAll)
         var cntAll = document.getElementById("list-contents").childElementCount;
         document.getElementById("all-count").innerHTML = cntAll;
 
         //完了したタスク(cntComp)
-        // var cntComp = item.task_status[3]; //value=3が完了
         // 残タスク数(cntAll-cntComp)
-        // var cntLeft = cntAll-cntComp;
-        // var cntLeft = (() => { //value=1が未完了
-        //         let result = 0;
-        //         statusValue.forEach((value) => {
-        //             if (statusValue == 1) {
-        //                 result += 1;
-        //             }
-        //         });
-        //         return result;
-        //         console.log(cntLeft);
-        //     })
+        var cntLeft = cntAll-cntComp;
+        // console.log(cntLeft);
+        document.getElementById("cntLeft").innerHTML = cntLeft
+
+
+        // const Today = new Date();
+        // var deadTask = item.deadline
+        // var deadTime = Today - item.deadline //結果がtodyより24時間前
+        // if(deadTime < )
+        // console.log(date);
       });
 
     //1件取得
