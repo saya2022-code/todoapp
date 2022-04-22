@@ -63,6 +63,8 @@
               </div>
             </div>
           </div>
+          <nav><li><a href="work.html">進行中</a></li></nav>
+
         <!-- 更新Modal テスト-->
           <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -135,9 +137,9 @@
         <thead>
           <tr class="taskHead">
             <th bgcolor="#cccccc"></th>
-            <td>タスク名</td>
-            <td>期限</td>
-            <td>カテゴリー</td>
+            <td >タスク名</td>
+            <td >期限</td>
+            <td >カテゴリー</td>
             <td>ステータス</td>
             <td>更新・削除</td>
           </tr>
@@ -162,7 +164,7 @@
                   </tr>
                   <tr>
                       <th>完了済みタスク数</th>
-                      <td><span class="completeCount">0</span> 個
+                      <td><span class="cntComp" id="cntComp"></span> 個
                           <div class="taskDeleteBtn js-none" id="js-taskDeleteBtn">
                               <a href="#" class="small">完了済みタスクを削除</a>
                           </div>
@@ -240,40 +242,24 @@
 
           //ステータスのvalueをテキストに変える
           const statusValue = item.task_status; 
-          var status = "";
+          var status = "";         
+          let cntComp = 0;
+          // contComp = statusValue[3];
+
           if(statusValue == 1){
            status = "未完了";
-           
+          //  document.getElementById("td-head").style.backgroundColor ='red'
           }else if(statusValue == 2){
            status = "進行中";
-        
           }else if(statusValue == 3){
            status = "完了";
-          //  var left = ${'#status'}.value;
-          //  document.getElementById('left-count').innerHTML = left;
-          };
-
-          //カテゴリー別
-          let categoryClassName = "";
-          switch (item.category_id) {
-            case 1:
-              categoryClassName = "category-orange";
-              break;
-            case 2:
-              categoryClassName = "category-green";
-              break;
-            case 3:
-              categoryClassName = "category-blue";
-              break;
-            case 4:
-              categoryClassName = "category-red";
-              break;
-            default:
-            // なにもしない
+           cntComp += 1;
           }
+          console.log(cntComp);
+          $(".cntComp").append(cntComp);
 
           return `<tr>
-                  <div class=${categoryClassName} id="">
+                  <div id="tdh">
                   <td width="2%" id="td-head"></td>
                   <td width="40%">${item.task_name} <li style="font-size: small;">タグ</li></td>
                   <td width="15%">${deadline}</td>
@@ -285,14 +271,17 @@
                   </tr>`;    
         });
         $(".list-contents").append(lists);
-
+      
         
         //タスクの総数をカウント
         var cntAll = document.getElementById("list-contents").childElementCount;
         document.getElementById("all-count").innerHTML = cntAll;
 
-        // 残タスク数
-        // var leftCount = (() => {
+        //完了したタスク(cntComp)
+        // var cntComp = item.task_status[3]; //value=3が完了
+        // 残タスク数(cntAll-cntComp)
+        // var cntLeft = cntAll-cntComp;
+        // var cntLeft = (() => { //value=1が未完了
         //         let result = 0;
         //         statusValue.forEach((value) => {
         //             if (statusValue == 1) {
@@ -300,8 +289,8 @@
         //             }
         //         });
         //         return result;
-        //         console.log(leftCount);
-            // })
+        //         console.log(cntLeft);
+        //     })
       });
 
     //1件取得

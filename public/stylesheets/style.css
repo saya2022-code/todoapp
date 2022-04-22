@@ -1,6 +1,5 @@
 .header-box{
   /* background-color: coral; */
-  
 }
 
 body {
@@ -16,6 +15,7 @@ body {
   font-style: inherit;
   padding: auto;
   margin-bottom: 10px;
+
 }
 
 .container{
@@ -29,6 +29,11 @@ body {
 
 .btn-success{
   margin-left: 20px;
+}
+
+nav{
+  margin-top: 30px;
+  margin-left: 30px;
 }
 .deletemodal-footer{
   text-align: center;
@@ -57,18 +62,20 @@ body {
 }
 
 table{
-  border-collapse: separate;
+  border-collapse: collapse;
+  /* border-spacing: 0px 8px; */
 }
 
 .taskHead{
   text-align: center;
 }
 table th,td  {
-  border:1px solid #dedede;
+  border-bottom:1px solid black;
   /* padding: 10px;      余白指定 */
   text-align: center;
   padding: 5px;
   font-size: larger;
+  border-spacing: 5px;
 }
 
 table th
