@@ -103,10 +103,16 @@ table th
   margin-left:20px;
 }
 
-.deadTask-button{
+.deadTask-button {
   margin-top: 20px;
   margin-left: 20px;
 }
+
+.ongoing-button {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
 
 .deadTask-Cbutton{
   margin-top: 20px;

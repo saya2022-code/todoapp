@@ -7,21 +7,18 @@ $("#taskName").focusout(function () {
     }
   });
   
-  //
-
   $(async function() {
     const datas = await httpGet("//" + window.location.host +"/api/list");
     const listn = datas.map((item) => {
       console.log(item);
-//完了していないタスクの表示
+  //未完了のみの表示
   const filterTable = document.getElementById("dead-table");
-  
   const filterButton = document.getElementById("deadTask-button"); 
   filterButton.textContent = '未完了で絞り込み';
-    
   filterButton.addEventListener('click', () => {
-      //絞り込み処理
-      $('tr:contains("未完了")').css('background-color', 'Yellow');
+
+    //hide()で非表示したい所を指定するだけで良い
+      $('tr:contains("終了"),tr:contains("進行中")').hide();
 
       // let row = $(this).closest("tr").remove();
       // $(row).remove();
@@ -41,16 +38,26 @@ $("#taskName").focusout(function () {
         // }
       // }
 });
-const offButton = document.getElementById("deadTask-Cbutton"); 
-offButton.textContent = '戻す';
-  
-offButton.addEventListener('click', () => {
-    // 絞り込み処理
-    $('tr:contains("未完了")').css('background-color', '#FFFFFF');
-});
-});
+
+  //進行中のみ表示
+  const ongoingTable = document.getElementById("dead-table");
+  const ongoingButton = document.getElementById("ongoing-button");   
+    ongoingButton.addEventListener('click', () => {
+    //絞り込み処理
+    $('tr:contains("終了"),tr:contains("未完了")').hide();
   });
-//完了していないタスクの非表示
+
+  //未完了・進行中を戻す(全表示)
+  const offButton = document.getElementById("deadTask-Cbutton"); 
+    offButton.textContent = '戻す';
+      
+    offButton.addEventListener('click', () => {
+    $('tr:contains("終了"),tr:contains("進行中"),tr:contains("未完了")').show();
+
+    });
+  });
+});
+
 
 //期限が前日のタスク
 // const Today = new Date();
@@ -76,7 +83,7 @@ offButton.addEventListener('click', () => {
         
             // 検索ボックスに値が入ってる場合
             if (searchText != '') {
-              $('.list-contents td').each(function() {
+              $('.list-contents tr').each(function() {
                 targetText = $(this).text();
         
                 // 検索対象となるリストに入力された文字列が存在するかどうかを判断
@@ -88,7 +95,7 @@ offButton.addEventListener('click', () => {
         
               // 検索結果をページに出力
               for (var i = 0; i < searchResult.length; i ++) {
-                $('<span>').text(searchResult[i]).appendTo('#search-result__list');
+                $('<tr>').text(searchResult[i]).appendTo('#search-result__list');
               }
         
               // ヒットの件数をページに出力
