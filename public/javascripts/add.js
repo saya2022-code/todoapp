@@ -11,6 +11,7 @@ $("#taskName").focusout(function () {
 
 //完了していないタスクの表示
   const filterTable = document.getElementById("dead-table");
+  
   const filterButton = document.getElementById("deadTask-button"); 
   filterButton.textContent = '未完了で絞り込み';
     
@@ -25,6 +26,16 @@ $("#taskName").focusout(function () {
 // }
 // }
 });
+
+const offButton = document.getElementById("deadTask-Cbutton"); 
+offButton.textContent = '戻す';
+  
+offButton.addEventListener('click', () => {
+    // 絞り込み処理
+    $('tr:contains("未完了")').css('background-color', '#FFFFFF');
+});
+
+//完了していないタスクの非表示
 
 //期限が前日のタスク
 // const Today = new Date();
