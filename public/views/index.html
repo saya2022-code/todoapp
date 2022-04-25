@@ -71,6 +71,16 @@
             <button id="deadTask-Cbutton" class="deadTask-Cbutton"></button>
           </div>
 
+          <div class="search-area">
+            <form>
+              <input type="text" id="search-text" placeholder="検索ワードを入力">
+            </form>
+            <div class="search-result">
+              <div class="search-result__hit-num"></div>
+              <div id="search-result__list"></div>
+            </div>
+          </div>
+
         <!-- 更新Modal テスト-->
           <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -139,7 +149,7 @@
     
   <div class="task-body">
     <div class="taskList" id="taskList">
-      <table bgcolor="#FFFFFF">
+      <table bgcolor="#FFFFFF" id="dead-table">
         <thead>
           <tr class="taskHead">
             <th></th>
