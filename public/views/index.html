@@ -63,9 +63,29 @@
               </div>
             </div>
           </div>
-          <nav><li><a href="work.html">進行中</a></li></nav>
+          
+           <!--未完了のみ表示させるボタン-->
           <div>
             <button id="deadTask-button" class="deadTask-button"></button>
+          </div>
+
+          <!--進行中のみ表示させるボタン-->
+          <div>
+            <button id="ongoing-button" class="ongoing-button">進行中で絞り込み</button>
+          </div>
+
+          <div>
+            <button id="deadTask-Cbutton" class="deadTask-Cbutton"></button>
+          </div>
+
+          <div class="search-area">
+            <form>
+              <input type="text" id="search-text" placeholder="検索ワードを入力">
+            </form>
+            <div class="search-result">
+              <div class="search-result__hit-num"></div>
+              <div id="search-result__list"></div>
+            </div>
           </div>
 
         <!-- 更新Modal テスト-->
@@ -100,7 +120,7 @@
                   <select id="status" class="form-control" name="status">
                     <option value="1">未完了</option>
                     <option value="2">進行中</option>
-                    <option value="3">完了</option>
+                    <option value="3">終了</option>
                   </select>
 
                 </div>
@@ -136,7 +156,7 @@
     
   <div class="task-body">
     <div class="taskList" id="taskList">
-      <table bgcolor="#FFFFFF">
+      <table bgcolor="#FFFFFF" id="dead-table">
         <thead>
           <tr class="taskHead">
             <th></th>
@@ -158,7 +178,7 @@
               <table class="table table-bordered">
                   <tr id="table-count">
                       <td>現在のタスク数</td>
-                      <td>完了済みタスク</td>
+                      <td>終了済みタスク</td>
                       <td>残りのタスク</td>
                   </tr>
                    <tr>
@@ -256,7 +276,7 @@
            status = "進行中";
            statusClass = "status-blue";
           }else if(statusValue == 3){
-           status = "完了";
+           status = "終了";
            statusClass = "status-green";
            cntComp += 1;
           }
