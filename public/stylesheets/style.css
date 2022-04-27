@@ -1,11 +1,59 @@
-.header-box{
-  /* background-color: coral; */
+* {
+  margin:0; padding:0;
+}
+
+.boby{
+  min-height: 100vh;
+
+}
+.side {
+  background-color:#ff838b;
+  width:20%;
+  min-height:250px;
+  text-align:center;
+} 
+
+.main {
+  background-color:#b3d874;
+  min-height: 100vh;
+  width: 80%;
+  /* text-align:center; */
+  margin-left:0 auto;/*サイドバーとメインコンテンツの間に隙間                    をあけた*/
+}
+
+article {
+  display:flex;/*サイドバーとメインコンテンツを横並びにする                指定をした*/
+}
+
+header {
+  height: 100px;
+  width: 100%;
+  padding: 15px 0;
+  background-color: #337079;
+  color: white;
+}
+header .headline{
+    line-height: 100px;
+    float: left;
+    font-size: 30px;
+    margin-left: 100px;
+}
+.nav-list {
+    line-height: 100px;
+    float: left;
+    margin-left: 30px;
+    list-style: none;
+}
+.nav-list-item {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
 }
 
 body {
-  background: linear-gradient(to bottom, #FFC778, #FFF);
-  margin: 10em;
-  margin-top: 30px;  
+  /* background: linear-gradient(to bottom, #FFC778, #FFF); */
+  /* margin: 10em; */
+  /* margin-top: 30px;   */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -14,22 +62,17 @@ body {
   font-size: 50px;
   font-style: inherit;
   padding: auto;
-  margin-bottom: 10px;
-
+  /* margin-bottom: 10px; */
 }
 
 .container{
-  width: 700px;
-  margin-bottom: 10px;
+  /* width: 700px; */
+  /* margin-bottom: 10px;*/
   margin-left: 0px;
+  margin-top: 10px;
   padding-left: 0px;
   padding-bottom: 10px;
-  border-bottom-style: solid;
   display: flex;
-}
-
-.btn-success{
-  margin-left: 20px;
 }
 
 nav{
@@ -52,10 +95,6 @@ nav{
   margin-right: 30px;
 }
 
-.task-body{
-  /* height: 500px; */
-  /* background-color: darkgreen; */
-}
 .taskList{
   padding: 0.5em 1em;
   margin: 2em 0;
@@ -103,16 +142,25 @@ table th
   margin-left:20px;
 }
 
+.button-box {
+  margin-top: 20px;
+}
+
+#create-Task{
+  margin-left: 20px;
+}
+
 .deadTask-button {
   margin-top: 20px;
   margin-left: 20px;
+  /* background-color: red; */
 }
 
 .ongoing-button {
   margin-top: 20px;
   margin-left: 20px;
+  /* background-color:blue; */
 }
-
 
 .deadTask-Cbutton{
   margin-top: 20px;
@@ -120,6 +168,15 @@ table th
 }
 
 .search-area{
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
+}
+
+
+footer {
+  width: 100%;
+  /* height: 120px;  */
+  text-align: center;
+  padding: 50px 0;
+  background-color:mediumaquamarine;
 }

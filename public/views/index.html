@@ -19,143 +19,189 @@
 
     <title>Todoアプリ</title>
   </head>
-
+  
   <body>
-    <div class="header-box">
-      <header class="todo">TO DO リスト</header>
+    <!-- 🍔 -->
+    <input id="menu" type="checkbox" />
+    <label for="menu" class="open">🍔</label>
+    <label for="menu" class="back"></label>
+    <!-- 🍔 -->
 
-      <div class="container">
-        <!-- Content here -->
-        <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
-          ＋タスクを追加</button>
-        <!-- 追加Modal -->
-          <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="createModal">タスク　登録</h5>
-                  <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" id="create-form">
-                  <label for="taskName">タスク</label>
-                  <input id="taskName" class="form-control" name="taskName"/>
-                  <p id="taskName-error"></p>
-                  
-                  <label for="deadline">期限 <br></label>
-                  <input type="date" id="deadline" class="form-control" name="deadline"/>
-                  <p></p>
+<article>
+  <div class="side">
+    <p>サイドバー</p>
+    <aside>
+      <!-- 🍔 -->
+      <label for="menu" class="close">×</label>
+      <!-- 🍔 -->
 
-                  <label for="category">カテゴリ <br></label>
-                  <select id="category" class="form-control" name="category">
-                    <option value="1">生活</option>
-                    <option value="2">勉強</option>
-                    <option value="3">仕事</option>
-                    <option value="4">趣味</option>
-                  </select>
-                </div>
+      <nav>
+          <ul class="menu-side">
+              <li>list1</li>
+              <li>list2</li>
+              <li>list3</li>
+              <li>list4</li>
+              <li>list5</li>
+          </ul>
+      </nav>
+      <div>
+          side footer
+      </div>
+  </aside>
+  </div> 
+  
 
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                  <button type="button" id="register-Task" class="btn btn-primary">登録</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-           <!--未完了のみ表示させるボタン-->
-          <div>
-            <button id="deadTask-button" class="deadTask-button"></button>
-          </div>
+  <div class="main">
+  <!-- header -->
+<header>
+<h1 class="headline">
+  <a>TO DO リスト</a>
+</h1>
+<!-- <ul class="nav-list">
+  <li class="nav-list-item">
+    <a>Home</a>
+  </li>
+  <li class="nav-list-item">About</li>
+  <li class="nav-list-item">Topic</li>
+</ul> -->
+<div class="button-box">
+  <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
+    ＋タスクを追加</button>
+    
+  <button id="deadTask-button" class="deadTask-button"></button>
+ 
+  <button id="ongoing-button" class="ongoing-button">進行中で絞り込み</button>
 
-          <!--進行中のみ表示させるボタン-->
-          <div>
-            <button id="ongoing-button" class="ongoing-button">進行中で絞り込み</button>
-          </div>
+  <button id="deadTask-Cbutton" class="deadTask-Cbutton"></button>
+</div>
+</header>
 
-          <div>
-            <button id="deadTask-Cbutton" class="deadTask-Cbutton"></button>
-          </div>
+      <div class="header-box">
+  
+        <div class="container">
+          <!-- Content here -->
+          <!-- <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
+            ＋タスクを追加</button> -->
 
-          <div class="search-area">
-            <form>
-              <input type="text" id="search-text" placeholder="検索ワードを入力">
-            </form>
-            <div class="search-result">
-              <div class="search-result__hit-num"></div>
-              <div id="search-result__list"></div>
-            </div>
-          </div>
+          <!-- 追加Modal -->
+            <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="createModal">タスク　登録</h5>
+                    <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="create-form">
+                    <label for="taskName">タスク</label>
+                    <input id="taskName" class="form-control" name="taskName"/>
+                    <p id="taskName-error"></p>
+                    
+                    <label for="deadline">期限 <br></label>
+                    <input type="date" id="deadline" class="form-control" name="deadline"/>
+                    <p></p>
 
-        <!-- 更新Modal テスト-->
-          <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" >タスクの更新</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
+                    <label for="category">カテゴリ <br></label>
+                    <select id="category" class="form-control" name="category">
+                      <option value="1">生活</option>
+                      <option value="2">勉強</option>
+                      <option value="3">仕事</option>
+                      <option value="4">趣味</option>
+                    </select>
+                    <label for="tagName">タグ</label>
+                      <input id="tagName" class="form-control" name="tagName"/>
+                  </div>
 
-                  <label for="taskName">タスク</label>
-                  <input id="taskName" class="form-control" name="taskName"/>
-                  <p id="taskName-error"></p>
-                  <label for="deadline">期限</label>
-                  <input type="date" id="deadline" class="form-control" name="deadline"/>
-                  <p></p>
-
-                  <label for="category">カテゴリ</label>
-                  <select id="category" class="form-control" name="category">
-                    <option value="1">生活</option>
-                    <option value="2">勉強</option>
-                    <option value="3">仕事</option>
-                    <option value="4">趣味</option>
-                  </select>
-
-                  <p></p>
-                  <label for="status">ステータス</label>
-                  <select id="status" class="form-control" name="status">
-                    <option value="1">未完了</option>
-                    <option value="2">進行中</option>
-                    <option value="3">終了</option>
-                  </select>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                  <button type="button" id="alter-Task" class="btn btn-primary">保存</button>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="button" id="register-Task" class="btn btn-primary">登録</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <!-- 削除Modal -->
-          <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deletemodalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="deletemodalLabel">下記のタスクを削除しますか？</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-bodys" id="deletemodal-body">
-                  <p id="memo"></p>
-                </div>
-                <div class="deletemodal-footer">
-                  <button type="button" id="cancel-button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
-                  <button type="button" id="deletemodal-get" class="btn btn-primary btn-sm">OK</button>
+
+          <!-- 更新Modal テスト-->
+            <div class="modal fade" id="altermodal" tabindex="-1" role="dialog" aria-labelledby="altermodal" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" >タスクの更新</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <label for="taskName">タスク</label>
+                    <input id="taskName" class="form-control" name="taskName"/>
+                    <p id="taskName-error"></p>
+                    <label for="deadline">期限</label>
+                    <input type="date" id="deadline" class="form-control" name="deadline"/>
+                    <p></p>
+
+                    <label for="category">カテゴリ</label>
+                    <select id="category" class="form-control" name="category">
+                      <option value="1">生活</option>
+                      <option value="2">勉強</option>
+                      <option value="3">仕事</option>
+                      <option value="4">趣味</option>
+                    </select>
+
+                    <p></p>
+                    <label for="status">ステータス</label>
+                    <select id="status" class="form-control" name="status">
+                      <option value="1">未完了</option>
+                      <option value="2">進行中</option>
+                      <option value="3">終了</option>
+                    </select>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="button" id="alter-Task" class="btn btn-primary">保存</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <!-- 削除Modal -->
+            <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deletemodalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deletemodalLabel">下記のタスクを削除しますか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-bodys" id="deletemodal-body">
+                    <p id="memo"></p>
+                  </div>
+                  <div class="deletemodal-footer">
+                    <button type="button" id="cancel-button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
+                    <button type="button" id="deletemodal-get" class="btn btn-primary btn-sm">OK</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    
+
+    <div class="search-area">
+      <form>
+        <input type="text" id="search-text" placeholder="検索ワードを入力">
+      </form>
+      <div class="search-result">
+        <div class="search-result__hit-num"></div>
+        <div id="search-result__list"></div>
       </div>
     </div>
-    
+
   <div class="task-body">
     <div class="taskList" id="taskList">
+      
+
       <table bgcolor="#FFFFFF" id="dead-table">
         <thead>
           <tr class="taskHead">
@@ -173,6 +219,7 @@
     </table>
     </div>
 
+    
     <!-- カウントテーブル -->
       <div class="sticky-top">
               <table class="table table-bordered">
@@ -189,15 +236,7 @@
               </table>
       </div> <!-- /.countTable -->
 
-    <!-- 期限切れの通知 -->
-    <div>
-      <ul>
-        <li>期限切れ前日のタスク</li>
-        <li></li>
-      </ul>
-    </div>
 
-    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -226,7 +265,7 @@
 
         // alert("この内容で登録しますか？");
         const deleteName = $(this).data("delete");
-        if(confirm(`この内容で登録しますか？`) == true){
+        // if(confirm(`この内容で登録しますか？`) == true){
 
         //リクエストデータをフォームから取得 -->
         const requestData = {
@@ -243,9 +282,9 @@
 
       //画面をリロード
         window.location.reload();
-      }else{
-        return false;
-      }
+      // }else{
+      //   return false;
+      // }
 
       });
     
@@ -307,13 +346,6 @@
         var cntLeft = cntAll-cntComp;
         // console.log(cntLeft);
         document.getElementById("cntLeft").innerHTML = cntLeft
-
-        // const Today = new Date();
-        // var deadTask = item.deadline
-        // var deadTime = Today - item.deadline //結果がtodyより24時間前
-        // if(deadTime < )
-        // console.log(date);
-        // table.textContent = '';  // table要素の子孫要素を空にする
       });
 
     //1件取得
@@ -401,19 +433,14 @@
  
   </script>
   </body>
-  <footer>
-    <!-- <div>
-      <h2 class="h6 font-weight-bold mb-3">本サイトについて</h2>
-      <h3 class="h6">閲覧推奨環境</h3>
-      <div class="small">
-          <dl class="row">
-              <dt class="col-2">PC:</dt>
-              <dd class="col-10">Chrome, Edge最新版</dd>
-              <dt class="col-2">SP:</dt>
-              <dd class="col-10">iOS11.0.3以上 iOS Safari, Chrome最新版</dd>
-          </dl>
-          <p><a href="https://github.com/kde-space/TO_DO_APP" target="_blank">その他使い方などはこちら</a></p>
-      </div>
-  </div> -->
-  </footer>
+</div>
+</article>
+
+<footer>
+    <h3 class="h6">閲覧推奨環境</h3>
+    <div class="small">
+        <p><a href="https://github.com/kde-space/TO_DO_APP" target="_blank">その他使い方などはこちら</a>
+        </p>
+    </div>
+</footer>
 </html>
