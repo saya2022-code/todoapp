@@ -38,10 +38,14 @@
 <div class="button-box">
   <button type="button" class="btn btn-success" id="create-Task" data-toggle="modal" data-target="#createModal">
     ＋タスクを追加</button>
-    
-  <button id="deadTask-button" class="deadTask-button"></button>
- 
-  <button id="ongoing-button" class="ongoing-button">進行中で絞り込み</button>
+
+  
+  <a id="deadTask-button" class="btn btn--red btn--radius btn--cubic" style="background: rgb(224, 141, 116);">未完了で絞り込み<i class="fas fa-angle-right fa-position-right"></i></a>
+
+  <a id="ongoing-button" class="btn btn--red btn--radius btn--cubic" style="background: rgb(120, 154, 204);">進行中で絞り込み<i class="fas fa-angle-right fa-position-right"></i></a>
+
+  <a id="deadTask-Cbutton" class="btn btn--red btn--radius btn--cubic" style="background: rgb(149, 199, 102);">戻る<i class="fas fa-angle-right fa-position-right"></i></a>
+
 
   <button id="deadTask-Cbutton" class="deadTask-Cbutton"></button>
 </div>
@@ -50,8 +54,6 @@
   <p>サイドバー</p>
 </div>  -->
 <article>
-
-      <div class="header-box">
   
         <div class="container">
           <!-- Content here -->
@@ -84,8 +86,7 @@
                       <option value="3">仕事</option>
                       <option value="4">趣味</option>
                     </select>
-                    <label for="tagName">タグ</label>
-                      <input id="tagName" class="form-control" name="tagName"/>
+                    
                   </div>
 
                   <div class="modal-footer">
@@ -160,12 +161,10 @@
               </div>
             </div>
         </div>
-      </div>
-    
 
     <div class="search-area">
       <form>
-        <input type="text" id="search-text" placeholder="検索ワードを入力">
+        <input type="text" id="search-text" placeholder="🔎検索ワードを入力">
       </form>
       <div class="search-result">
         <div class="search-result__hit-num"></div>
@@ -177,7 +176,7 @@
     <div class="taskList" id="taskList">
       
 
-      <table bgcolor="#FFFFFF" id="dead-table">
+      <table  id="dead-table" >
         <thead>
           <tr class="taskHead">
             <th></th>
@@ -192,30 +191,14 @@
         <!-- この間にreturnが入る -->
       </tbody>
     </table>
-
-     <!-- カウントテーブル -->
-     <div class="sticky-top">
-      <table class="table table-bordered">
-          <tr id="table-count">
-              <td>現在のタスク数</td>
-              <td>終了済みタスク</td>
-              <td>残りのタスク</td>
-          </tr>
-           <tr>
-            <td><span class="totalCount" id="all-count"></span> 個</td>
-            <td><span class="cntComp" id="cntComp"></span> 個
-              <td><span class="cnt-Left" id="cntLeft"></span> 個</td>
-          </tr>
-      </table>
-</div> <!-- /.countTable -->
-    </div>
+  </div>
     
     <!-- カウントテーブル -->
-      <!-- <div class="sticky-top">
-              <table class="table table-bordered">
+    <div class="sticky-top">
+              <table class="table table-bordered" style="background: #ffffff;">
                   <tr id="table-count">
                       <td>現在のタスク数</td>
-                      <td>終了済みタスク</td>
+                      <td>完了したタスク</td>
                       <td>残りのタスク</td>
                   </tr>
                    <tr>
@@ -224,8 +207,9 @@
                       <td><span class="cnt-Left" id="cntLeft"></span> 個</td>
                   </tr>
               </table>
-      </div> /.countTable -->
+    </div><!-- countTable -->
 
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -313,7 +297,7 @@
           return `<tr>
                   <div id="tdh">
                   <td width="2%" id="td-head" class=${statusClass}></td>
-                  <td width="40%">${item.task_name} <li style="font-size: small;">タグ</li></td>
+                  <td width="40%">${item.task_name}</td>
                   <td width="15%">${deadline}</td>
                   <td width="10%">${item.category_name}</td>
                   <td width="10%">${status}</td>
