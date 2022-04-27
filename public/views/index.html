@@ -21,37 +21,8 @@
   </head>
   
   <body>
-    <!-- 🍔 -->
-    <input id="menu" type="checkbox" />
-    <label for="menu" class="open">🍔</label>
-    <label for="menu" class="back"></label>
-    <!-- 🍔 -->
 
-<article>
-  <div class="side">
-    <p>サイドバー</p>
-    <aside>
-      <!-- 🍔 -->
-      <label for="menu" class="close">×</label>
-      <!-- 🍔 -->
-
-      <nav>
-          <ul class="menu-side">
-              <li>list1</li>
-              <li>list2</li>
-              <li>list3</li>
-              <li>list4</li>
-              <li>list5</li>
-          </ul>
-      </nav>
-      <div>
-          side footer
-      </div>
-  </aside>
-  </div> 
-  
-
-  <div class="main">
+    <div class="main">
   <!-- header -->
 <header>
 <h1 class="headline">
@@ -75,6 +46,10 @@
   <button id="deadTask-Cbutton" class="deadTask-Cbutton"></button>
 </div>
 </header>
+<!-- <div class="side">
+  <p>サイドバー</p>
+</div>  -->
+<article>
 
       <div class="header-box">
   
@@ -217,11 +192,26 @@
         <!-- この間にreturnが入る -->
       </tbody>
     </table>
-    </div>
 
+     <!-- カウントテーブル -->
+     <div class="sticky-top">
+      <table class="table table-bordered">
+          <tr id="table-count">
+              <td>現在のタスク数</td>
+              <td>終了済みタスク</td>
+              <td>残りのタスク</td>
+          </tr>
+           <tr>
+            <td><span class="totalCount" id="all-count"></span> 個</td>
+            <td><span class="cntComp" id="cntComp"></span> 個
+              <td><span class="cnt-Left" id="cntLeft"></span> 個</td>
+          </tr>
+      </table>
+</div> <!-- /.countTable -->
+    </div>
     
     <!-- カウントテーブル -->
-      <div class="sticky-top">
+      <!-- <div class="sticky-top">
               <table class="table table-bordered">
                   <tr id="table-count">
                       <td>現在のタスク数</td>
@@ -234,8 +224,7 @@
                       <td><span class="cnt-Left" id="cntLeft"></span> 個</td>
                   </tr>
               </table>
-      </div> <!-- /.countTable -->
-
+      </div> /.countTable -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
