@@ -11,32 +11,13 @@ $("#taskName").focusout(function () {
     const datas = await httpGet("//" + window.location.host +"/api/list");
     const listn = datas.map((item) => {
       console.log(item);
-  //未完了のみの表示
-  const filterTable = document.getElementById("dead-table");
-  const filterButton = document.getElementById("deadTask-button"); 
-  filterButton.textContent = '未完了で絞り込み';
-  filterButton.addEventListener('click', () => {
+    //未完了のみの表示
+    const filterTable = document.getElementById("dead-table");
+    const filterButton = document.getElementById("deadTask-button"); 
+    filterButton.addEventListener('click', () => {
 
     //hide()で非表示したい所を指定するだけで良い
       $('tr:contains("終了"),tr:contains("進行中")').hide();
-
-      // let row = $(this).closest("tr").remove();
-      // $(row).remove();
-
-    //   for (const item of datas) {
-    //   if (item.task_status == 1) {
-    //   $(this).closest('tr:contains("未完了")').remove();
-    //   }
-    // }
-
-    // for (const item of listn) {
-      // if (listn.task_status == 1) {
-        // addItem(item);
-        // filterTable.textContent = ''; 
-        // console.log("aaa");
-          
-        // }
-      // }
 });
 
   //進行中のみ表示
@@ -49,7 +30,6 @@ $("#taskName").focusout(function () {
 
   //未完了・進行中を戻す(全表示)
   const offButton = document.getElementById("deadTask-Cbutton"); 
-    offButton.textContent = '戻す';
       
     offButton.addEventListener('click', () => {
     $('tr:contains("終了"),tr:contains("進行中"),tr:contains("未完了")').show();
@@ -107,25 +87,3 @@ $("#taskName").focusout(function () {
           // searchWordの実行
           $('#search-text').on('input', searchWord);
         });
-
-  //部分一致の検索
-  // $(function () {
-  //   searchWord = function(){
-  //     var searchText = $(this).val(), // 検索ボックスに入力された値
-  //         targetText;
-  
-  //     $('.list-contents td').each(function() {
-  //       targetText = $(this).text();
-  
-  //       // 検索対象となるリストに入力された文字列が存在するかどうかを判断
-  //       if (targetText.indexOf(searchText) != -1) {
-  //         $(this).removeClass('hidden');
-  //       } else {
-  //         $(this).addClass('hidden');
-  //       }
-  //     });
-  //   };
-  
-  //   // searchWordの実行
-  //   $('#search-text').on('input', searchWord);
-  // });
