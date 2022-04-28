@@ -1,5 +1,6 @@
 * {
   margin:0; padding:0;
+  font-family: 'IM Fell DW Pica SC', serif;
 }
 
 .boby{
@@ -7,7 +8,7 @@
 }
 
 article {
-  min-height: 80vh;
+    min-height: 80vh;
     position: relative;/*←相対位置*/
     padding-bottom: 80px;/*←footerの高さ*/
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
@@ -31,9 +32,11 @@ header {
 header .headline{
     line-height: 100px;
     float: left;
-    font-size: 50px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    font-size: 50px;/* IE8以下とAndroid4.3以下用フォールバック */
+    font-size: calc(2.4rem + ((1vw - 0.64rem) * 2.1429));/* 24px~36pxで可変*/
     margin-left: 100px;
+    /* font-family: 'Homemade Apple', cursive; */
 }
 
 body {
@@ -135,12 +138,17 @@ table td{
 }
 
 .button-box {
+  font-size: 20px;/* IE8以下とAndroid4.3以下用フォールバック */
+  font-size: calc(1.5rem + ((1vw - 0.80rem) * 2.1429));/* 15px~20pxで可変*/
   margin-top: 30px;
   padding: auto;
 }
 
 #create-Task{
-  width: 10%;
+  font-size: 15px;/* IE8以下とAndroid4.3以下用フォールバック */
+  font-size: calc(0.8rem + ((1vw - 0.7rem) * 2.1429));
+  /* height: clamp(10px,10vw,20px);
+  font-size: clamp(5px,5vw,10px); */
   margin-top: 20px;
   margin-left: 40px;
 }
@@ -148,16 +156,24 @@ table td{
 #deadTask-button {
   margin-top: 20px;
   margin-left: 50px;
+  font-size: 10px;/* IE8以下とAndroid4.3以下用フォールバック */
+  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));
   /* background-color: red; */
 }
+
 #ongoing-button{
   margin-top: 20px;
   margin-left: 20px;
+  font-size: 15px;/* IE8以下とAndroid4.3以下用フォールバック */
+  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));/
 }
 
 #deadTask-Cbutton{
   margin-top: 20px;
   margin-left: 20px;
+  font-size: 10px;/* IE8以下とAndroid4.3以下用フォールバック */
+  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));/
+
 }
 
 a.btn--red.btn--cubic {
