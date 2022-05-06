@@ -8,34 +8,51 @@ $("#taskName").focusout(function () {
   });
   
   $(async function() {
-    const datas = await httpGet("//" + window.location.host +"/api/list");
-    const listn = datas.map((item) => {
+    const status_id = $('#deadTask-button').data("id");
+    const datas = await getTasks_yet("//" + window.location.host +"api/list/status/"+status_id);
+    const list_yet = datas.map((item) => {
       console.log(item);
-    //未完了のみの表示
-    const filterTable = document.getElementById("dead-table");
-    const filterButton = document.getElementById("deadTask-button"); 
-    filterButton.addEventListener('click', () => {
+       
+      // 日付を 年月日に変換
+      const createDate = new Date(item.deadline);
+      const year = createDate.getFullYear();
+      const month = createDate.getMonth() + 1;
+      const day = createDate.getDate();
+      const deadline = year + "年" + month + "月" + day + "日";
 
-    //hide()で非表示したい所を指定するだけで良い
-      $('tr:contains("終了"),tr:contains("進行中")').hide();
-});
+      //ステータスのvalueをテキストに変える
+      const statusValue = item.task_status; 
+      var status = ""; 
+      var statusClass = "";   
+         
+      if(statusValue == 1){
+       status = "未完了";
+       statusClass = "status-red";
+      //  document.getElementById("td-head").style.backgroundColor ='red'
+      }else if(statusValue == 2){
+       status = "進行中";
+       statusClass = "status-blue";
+      }else if(statusValue == 3){
+       status = "終了";
+       statusClass = "status-green";
+       cntComp += 1;
+      }
+      console.log(cntComp);
 
-  //進行中のみ表示
-  const ongoingTable = document.getElementById("dead-table");
-  const ongoingButton = document.getElementById("ongoing-button");   
-    ongoingButton.addEventListener('click', () => {
-    //絞り込み処理
-    $('tr:contains("終了"),tr:contains("未完了")').hide();
-  });
-
-  //未完了・進行中を戻す(全表示)
-  const offButton = document.getElementById("deadTask-Cbutton"); 
-      
-    offButton.addEventListener('click', () => {
-    $('tr:contains("終了"),tr:contains("進行中"),tr:contains("未完了")').show();
-
+      return `<tr class="br">
+              <div id="tdh">
+              <td width="2%" id="td-head" class=${statusClass}></td>
+              <td width="40%">${item.task_name}</td>
+              <td width="15%">${deadline}</td>
+              <td width="10%">${item.category_name}</td>
+              <td width="10%">${status}</td>
+              <td width="18%"><button type="button" class="btn btn-primary "data-toggle="modal" data-target="#altermodal" id="altermodal-get" data-id=${item.id}>更新</button>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" data-id=${item.id} data-delete=${item.task_name} id="delete-button" >削除</button></td>
+              </div>
+              </tr>`;    
     });
-  });
+    $(".list-contents").append(list_yet);
+
 });
 
 

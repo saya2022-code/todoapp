@@ -165,14 +165,14 @@ table td{
   margin-top: 20px;
   margin-left: 20px;
   font-size: 15px;/* IE8以下とAndroid4.3以下用フォールバック */
-  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));/
+  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));
 }
 
 #deadTask-Cbutton{
   margin-top: 20px;
   margin-left: 20px;
   font-size: 10px;/* IE8以下とAndroid4.3以下用フォールバック */
-  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));/
+  font-size: calc(0.5rem + ((1vw - 0.7rem) * 2.1429));
 
 }
 

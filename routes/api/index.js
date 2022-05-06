@@ -33,6 +33,13 @@ module.exports = router;
   //getTaskId()をgetTaskIdに代入してそのレスポンスbodyを返却する
  });
  
+ /*未処理タスクを絞りこむルーティング */
+ //Httpメソッド(get)を定義=router.get
+ router.get("/list/status/:id", async function (req, res, next) {
+  const getTasks_yet = await list.getTasks_yet(req.params.id);
+  res.send(getTasks_yet);
+});
+
  /*タスクを更新するルーティング */
  router.patch("/list/:id", async function(req, res, next){ 
   console.log(req.params.id,req.body); 

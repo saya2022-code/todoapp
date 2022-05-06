@@ -10,6 +10,19 @@ const httpGet = async function (url) {
   }
 };
 
+//未処理タスク取得用
+const getTasks_yet = async function (url) {
+  try {
+    const response = await fetch(url, {
+      method: "GET", // GET
+    });
+    return response.json(); // JSON のレスポンスを JavaScript のオブジェクトに変換
+  } catch (err) {
+    console.log(err);
+  }
+}; 
+
+
 // 登録用API実行メソッド
 const httpPost = async function (url, data) {
   console.log(url);
